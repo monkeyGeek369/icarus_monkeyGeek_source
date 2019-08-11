@@ -16,23 +16,23 @@ thumbnail: ../../image/githubblogtheme.png
 
 **github环境准备**
 
-github支持html等静态站点的访问解析，可以通过访问与github用户名相同的仓库名来实现访问站点，这也是通过github实现自建博客的依据。那么我们的首要条件是建立一个仓库名称为自己github账户名称的仓库，然后通过“你的用户名.github.io”来访问你的博文站点。
+github中有个叫github page 的服务，这项服务支持html等静态站点的访问解析，可以通过访问与github用户名相同的仓库名来实现访问站点，这也是通过github实现自建博客的依据。那么我们的首要条件是建立一个仓库名称为自己github账户名称的仓库，然后通过“你的用户名.github.io”来访问你的博文站点。
 
 <!--more-->
 
-那么问题来了，如何创建仓库？如何实现本地同github的安全通信？这部分内容在文章“本地版本库创建并提交GitHub”已经介绍，这里不再重复叙述。在这里假设我们以及成功建立仓库，名称为：monkeyGeek369
+那么问题来了，如何创建仓库？如何实现本地同github的安全通信？这部分内容在文章“[本地版本库创建并提交GitHub](http://www.monkeygeek.cn/2019/8/10/commitgithub/)”已经介绍，这里不再重复叙述。在这里假设我们已经成功建立仓库，名称为：monkeyGeek369（一定要是你自己github的账户名称）
 
 
 
 **本地git环境准备**
 
-简单来说git的环境准备就是将git安装到本地，一直下一步即可，如果对git生疏可以查看本博客站点git相关文章。
+简单来说git的环境准备就是将git安装到本地，一直下一步即可，如果对git生疏可以查看本博客站点[git相关文章](http://www.monkeygeek.cn/categories/git/)。
 
 
 
 **hexo环境配置**
 
-详情可以查看“一、hexo基础环境准备”
+详情可以查看“[一、hexo基础环境准备](http://www.monkeygeek.cn/2019/8/10/environment/)”
 
 
 
@@ -90,7 +90,7 @@ deploy:
   message: #消息配置
 ```
 
-<span style="color:red">2、确保本地与github仓库的通信成功，这部分内容在文章“本地版本库创建并提交GitHub”已经介绍</span>
+<span style="color:red">2、确保本地与github仓库的通信成功，这部分内容在文章“[本地版本库创建并提交GitHub](http://www.monkeygeek.cn/2019/8/10/commitgithub/)”已经介绍</span>
 
 <span style="color:red">3、安装部署插件，执行命令 npm install hexo-deployer-git --save</span>
 
@@ -103,6 +103,16 @@ deploy:
 通过<span style="color:red">“你的用户名.github.io”</span>来访问你的博文站点
 
 
+
+**域名绑定**
+
+关于自身域名如何绑定至github可以参考我第九篇文章，有专门介绍。
+
+</br>
+
+</br>
+
+</br>
 
 <script>
 var _hmt = _hmt || [];
