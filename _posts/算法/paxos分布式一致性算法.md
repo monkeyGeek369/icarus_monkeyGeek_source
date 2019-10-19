@@ -17,6 +17,16 @@ permalink:
 thumbnail:
 ---
 
+# 情景再现
+
+
+
+
+
+Paxos是能够基于一大堆完全不可靠的网络条件下却能可靠确定地实现共识一致性的算法。也就是说：它允许一组不一定可靠的处理器（服务器）在某些条件得到满足情况下就能达成确定的安全的共识，如果条件不能满足也确保这组处理器（服务器）保持一致。
+
+
+
 
 
 <!--more-->
@@ -26,6 +36,16 @@ thumbnail:
 </br>
 
 </br>
+
+参考文献如下:
+
+https://blog.csdn.net/cnh294141800/article/details/53768464
+
+https://www.cnblogs.com/stateis0/p/9062130.html
+
+https://blog.csdn.net/yowasa/article/details/81224936
+
+https://blog.csdn.net/omnispace/article/details/79653932
 
 </br>
 
