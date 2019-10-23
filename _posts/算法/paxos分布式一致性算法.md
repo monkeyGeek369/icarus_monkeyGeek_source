@@ -67,6 +67,80 @@ Paxos是能够基于一大堆完全不可靠的网络条件下却能可靠确定
 
 - 2007年及其以后google公司在OSDI发表的两篇论文拉开了paxos工业应用的序幕
 
+</br>
+
+# Paxos算法流程
+
+
+
+### **Paxos中的角色**
+
+![](../../../../image/paxos角色关系.png)
+
+- Proposer(提议人):负责提出提案(Proposal),Proposal信息包括提案编号 (Proposal ID) 和提议的值 (Value)
+- Acceptor(接收人):参与决策，回应Proposers的提案
+- Learner(学习者):不参与决策，从Proposers/Acceptors学习最新达成一致的提案（Value）
+
+注:在多副本状态机中，每个副本同时具有Proposer、Acceptor、Learner三种角色
+
+
+
+### **Paxos的决议阶段**
+
+- 第一阶段：Prepare阶段。Proposer向Acceptors发出Prepare请求，Acceptors针对收到的Prepare请求进行Promise承诺。
+- 第二阶段：Accept阶段。Proposer收到多数Acceptors承诺的Promise后，向Acceptors发出Propose请求，Acceptors针对收到的Propose请求进行Accept处理。
+
+注:在第二阶段结束后如果Proposer收到多数Acceptors的Accept，标志着本次Accept成功，决议形成，将形成的决议发送给所有Learners
+
+
+
+### **Acceptor的两个承诺一个应答**
+
+**两个承诺**
+
+- 不再接受Proposal ID小于等于（注意：这里是<= ）当前请求的Prepare请求。
+- 不再接受Proposal ID小于（注意：这里是< ）当前请求的Propose请求。
+
+**一个应答**
+
+- 不违背以前作出的承诺下，回复已经Accept过的提案中Proposal ID最大的那个提案的Value和Proposal ID，没有则返回空值。
+
+
+
+### **Paxos算法伪代码Base-Paxos**
+
+![](../../../../image/Base-Paxos基础流程.png)
+
+- 步骤1:提议人生成最新提议编号N(N自增且唯一,Paxos不同实现其N的生成算法不同),并将N广播至所有接收人
+- 步骤2:接收人响应提议人Proposal,如果接收人maxN(记录最大N)为null则记录N到maxN并返回(null,null),如果N>maxN则记录N到maxN并返回(acceptN,accetpV),如果N<=maxN则不响应
+- 步骤3:提议人收集所有来自接收人的响应数据,如果响应数量小于等于半数则重新执行步骤1,否则将从所获取所有响应的最大编号accetpedN所对应的acceptedV作为阶段二value的提交值.
+- 步骤4:此步骤提议人将提交(N,value)至所有接收人,其中N将重新生成,value来自步骤3,如果value==null则将有提议人自行决定
+- 步骤5:接收人将针对提议人的(N,value)进行响应,如果N小于maxN,接收人不响应,否则,接收人将更新maxN,accetpedN,accetpedV并返回(acceptN,accetpV)
+- 步骤6:由提议人根据响应结果确定value的决议结果并将结果分发至各Learner,其中如果响应数过半数但响应结果的编号result大于发送编号N,那么证明value有被更新,需要重新执行步骤1
+
+
+
+**总结:**
+
+- 阶段一本质上是收集各接收人现存(acceptN,accetpV)并为阶段二的数据提交做准备
+- 阶段二本质上是完成决议确定value值并将决议结果发送至各Learner
+
+
+
+注:原始的Paxos算法（Basic Paxos）只能对一个值形成决议，决议的形成至少需要两次网络来回，在高并发情况下可能需要更多的网络来回。如果想连续确定多个值，Basic Paxos搞不定了。因此Basic Paxos几乎只是用来做理论研究，并不直接应用在实际工程中。
+
+
+
+
+
+
+
+
+
+</br>
+
+</br>
+
 
 
 
