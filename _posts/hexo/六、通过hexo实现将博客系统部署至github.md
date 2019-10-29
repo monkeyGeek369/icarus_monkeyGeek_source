@@ -92,7 +92,7 @@ deploy:
 
 <span style="color:red">2、确保本地与github仓库的通信成功，这部分内容在文章“[本地版本库创建并提交GitHub](http://www.monkeygeek.cn/2019/8/10/commitgithub/)”已经介绍</span>
 
-<span style="color:red">3、安装部署插件，执行命令 npm install hexo-deployer-git --save</span>
+<span style="color:red">3、安装部署插件，执行命令 npm install `--`save hexo-deployer-git</span>
 
 <span style="color:red">4、通过hexo deploy实现部署</span>
 
