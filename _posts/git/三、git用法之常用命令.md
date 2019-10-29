@@ -244,9 +244,51 @@ git fetch origin 远程分支名 : 本地分支名 //拉取远程分支到本地
 
 
 
+### **18、git config  --git配置相关**
+
+```
+git config --system -l
+git config --global -l
+git config --local -l
+
+git config --global user.name "yourName"
+git config --global user.email "yourEmail"
+
+git config --local user.name "yourName"
+git config --local user.email "yourEmail"
+
+
+git config --global --unset credential.helper
+git config --system --unset credential.helper
+git config --local --unset credential.helper
+
+git config --local credential.helper store
+
+git config --global --unset user.name
+git config --global --unset user.email
+```
 
 
 
+### **19、ssh -T  --验证git是否联通**
+
+```
+ssh -T git@github.com
+```
+
+
+
+### **20、ssh-add  --私钥添加至本地**
+
+```
+ssh-add ~/.ssh/id_rsa_github // 将 GitHub 私钥添加到本地
+ssh-add ~/.ssh/id_rsa_gitlab // 将 GitLab 私钥添加到本地
+
+ssh-add -l
+
+eval `ssh-agent`
+Could not open a connection to your authentication agent
+```
 
 
 

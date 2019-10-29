@@ -48,12 +48,18 @@ $ ls
 右键选择git bash here，执行如下命令：
 
 ```
-ssh-keygen -t rsa -C "你的邮箱地址"
+ssh-keygen -t rsa -C "你的邮箱地址"  #自动在.ssh生成名称为id_rsa的密钥文件
 ```
 
 在输入此命令后会提示是否设置密码，可以自行选择是否设置密码。
 
 设置密码后在每次进行git push等命令时会进行密码输入
+
+```
+ssh-keygen -t rsa -C "你的邮箱地址" -f "yourFileName_rsa"
+```
+
+通过该命令可生成指定名称的rsa密钥文件至.ssh文件夹内
 
 
 
