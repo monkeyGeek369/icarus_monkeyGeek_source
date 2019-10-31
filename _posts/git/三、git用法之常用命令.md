@@ -247,23 +247,28 @@ git fetch origin 远程分支名 : 本地分支名 //拉取远程分支到本地
 ### **18、git config  --git配置相关**
 
 ```
+#分别查看系统\全局\本地配置,优先级为local>global>system
 git config --system -l
 git config --global -l
 git config --local -l
 
+#设置全局用户名\用户邮箱
 git config --global user.name "yourName"
 git config --global user.email "yourEmail"
 
+#设置项目本地用户名\用户邮箱
 git config --local user.name "yourName"
 git config --local user.email "yourEmail"
 
-
-git config --global --unset credential.helper
-git config --system --unset credential.helper
-git config --local --unset credential.helper
-
+#缓存项目本地的rsa对应的凭据信息
 git config --local credential.helper store
 
+#清除系统\全局\项目本地的rsa对应的凭据信息
+git config --system --unset credential.helper
+git config --global --unset credential.helper
+git config --local --unset credential.helper
+
+#清除全局用户名\用户邮箱信息
 git config --global --unset user.name
 git config --global --unset user.email
 ```
@@ -273,7 +278,30 @@ git config --global --unset user.email
 ### **19、ssh -T  --验证git是否联通**
 
 ```
+#基本格式为 ssh -T 远程服务类型@远程地址(当然也可以是自定义地址Host)
 ssh -T git@github.com
+```
+
+```
+#步骤一:在.ssh文件夹内的config配置文件来配置自定义rsa,如下
+Host yqnshare
+   User yqnshareTest
+   Hostname github.com
+   IdentityFile ~/.ssh/yqnshare_rsa
+
+#通过自定义Host名称来代替远程地址进行访问
+$ ssh -T git@yqnshare
+Enter passphrase for key '/c/Users/EDZ/.ssh/yqnshare_rsa':
+Hi yqnshare! You've successfully authenticated, but GitHub does not provide shell access.
+
+```
+
+
+
+用于本地测试是否能够联通远程服务器,出现以下内容则表示联通:
+
+```bash
+Hi ***! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 
@@ -281,13 +309,17 @@ ssh -T git@github.com
 ### **20、ssh-add  --私钥添加至本地**
 
 ```
+#将不同的私钥添加到本机git环境
 ssh-add ~/.ssh/id_rsa_github // 将 GitHub 私钥添加到本地
 ssh-add ~/.ssh/id_rsa_gitlab // 将 GitLab 私钥添加到本地
 
+#列出本机git环境已添加私钥情况
 ssh-add -l
 
-eval `ssh-agent`
+#如果执行添加私钥命令出现如下提示,则需要执行eval `ssh-agent`命令
 Could not open a connection to your authentication agent
+eval `ssh-agent`
+
 ```
 
 
