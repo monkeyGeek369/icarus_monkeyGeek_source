@@ -49,12 +49,30 @@ git add www/js/a.js   添加具体未版本控制对象
 
 
 
-### **3、设置默认全局名称、地址**
+### **3、git remote --远程主机设置**
 
 ```
-git config --global user.email “you@example.com”//设置邮箱地址
-git config --global user.name “Your Name” //设置用户名
+#列出现存远程主机
+git remote
+
+#列出远程主机详情及地址
+git remote -v
+
+#设置远程主机自定义名称及地址
+git remote add yourName url 
+如 git remote add monkeygeek git@github.com:monkeygeek/Test.git
+
+#删除指定名称的远程主机信息
+git remote remove yourName 
+
+#重命名远程主机
+git remote rename 原名字 新名字
+
+#展示远程主机详细信息
+git remote show 主机名
 ```
+
+为了便于管理，Git要求每个远程主机都必须指定一个主机名。git remote命令就用于管理主机名。
 
 
 
@@ -143,6 +161,7 @@ git branch <name>: 创建一个新的本地分支
 git branch -m oldbranch newbranch： 重命名分支
 git branch -d branchname： 删除本地分支
 git push origin --delete branchname：删除远程分支
+git push origin yourBranch 提交本地分支到远程
 ```
 
 
