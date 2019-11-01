@@ -72,16 +72,22 @@ branch.master.merge=refs/heads/master
 | --------------------- | ------------------------------------------------------------ |
 | 远程主机remote.origin | 本地仓库必须要指定远程主机信息,通过clone命令即已经具备,无需再设置,当然也可也通过git remote 命令重新设置(如$ git remote set-url origin https://github.com/yqnshare/yqnshare.github.io.git) |
 | 本地分支branch.master | 创建本地分支并提交至远程主机,详情可看[git用法之常用命令](http://www.monkeygeek.cn/2019/8/10/gitcommand/) |
-| 用户名user.name       | 可以通过git config --system/global/local来分别设定,优先级为local>global>system,用户名仅仅是作为标记,无任何验证作用 |
-| 用户邮箱user.email    | 可以通过git config --system/global/local来分别设定,优先级为local>global>system,用户邮箱仅仅是作为标记,无任何验证作用 |
-| 账户名                | 账户名必须填写,对应的是远程主机的账户名                      |
+| 用户名user.name       | 可以通过git config --system/global/local来分别设定,优先级为local>global>system,用户名仅仅是作为标记,无任何验证作用.详情可看[git用法之常用命令](http://www.monkeygeek.cn/2019/8/10/gitcommand/) |
+| 用户邮箱user.email    | 可以通过git config --system/global/local来分别设定,优先级为local>global>system,用户邮箱仅仅是作为标记,无任何验证作用.详情可看[git用法之常用命令](http://www.monkeygeek.cn/2019/8/10/gitcommand/) |
+| 账户名                | 账户名必须填写,对应的是远程主机的账户名,如github账户名       |
 | 密钥密码              | 如果使用rsa且设置了密码那么必须要输入                        |
 
 </br>
 
 # 四 配置步骤
 
-**4.1配置config文件**
+**4.1针对不同环境生成不同rsa密钥**
+
+密钥的生成看第二部分"密钥的基本概念"
+
+
+
+**4.2配置config文件**
 
 以window系统为例,需要在.ssh中创建config文件并进行配置,内容如下:
 
@@ -109,15 +115,31 @@ Host monkeygeekhost
 
 
 
+配置好后可通过ssh -T命令测试各个配置是否能够联通,如:
+
+ssh -T git@@yqnsharehost
 
 
 
+**4.3配置账户信息**
 
-</br>
+具体可看第三部分"账户的基本概念",其中需要特别注意的是"用户名"和"密钥密码",一般git会将我们第一次输入的账户名和密码进行缓存,当然我们也可以移除缓存或添加缓存,具体操作如下:
 
-</br>
+```
+#缓存项目本地的rsa对应的凭据信息
+git config --local credential.helper store
 
-</br>
+#清除系统\全局\项目本地的rsa对应的凭据信息
+git config --system --unset credential.helper
+git config --global --unset credential.helper
+git config --local --unset credential.helper
+```
+
+
+
+这里或许大家会有一个疑问,比如我在config配置了多种rsa那么到具体的项目中我们也没有去设置匹配关系,git是如何找到对应的config配置呢?
+
+正如我前文说的,rsa密钥配置仅仅作为身份认证没有其它作用,而账户信息则负责整个本地项目与远程仓库的对应关系,两者不存在直接匹配关系,当我们本地项目需要pull或push等操作远程仓库时,git会根据项目中对应好的关系(如url地址,账户名等)自动取config中匹配,我们只需输入对应的"账户名"和"rsa密钥密码"即可访问.
 
 </br>
 

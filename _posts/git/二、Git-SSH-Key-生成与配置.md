@@ -68,7 +68,7 @@ ssh-keygen -t rsa -C "你的邮箱地址" -f "yourFileName_rsa"
 右键选择git bash here，执行如下命令：
 
 ```
-ssh-add rsa密钥文件名
+ssh-add ~/.ssh/rsa密钥文件名
 ```
 
 <span style="color:red;">注意：直接ssh-add命令可能报错“ Could not open a connection to your authentication agent”这是因为ssh agent配置有问题，需要先执行ssh-agent bash命令。</span>
