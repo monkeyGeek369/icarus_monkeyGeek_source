@@ -280,6 +280,9 @@ git config --local user.name "yourName"
 git config --local user.email "yourEmail"
 
 #缓存项目本地的rsa对应的凭据信息
+#1.缓存的账户密码以明文形式存放在.ssh根目录.git-credentials文件内
+#2.同服务器账户只能被缓存一次，如account1和account2同为github账户，即github.com的服务器地址只能被缓存一条数据
+#3.若account2被缓存那么在account1使用push等命令时会提示“使用account1账户登录无权限”
 git config --local credential.helper store
 
 #清除系统\全局\项目本地的rsa对应的凭据信息
