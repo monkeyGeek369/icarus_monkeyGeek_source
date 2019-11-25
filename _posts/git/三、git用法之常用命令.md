@@ -127,7 +127,7 @@ git push origin 本地分支 : 远程分支 //将本地缓存推送到远程分�
 ### **8、git merge 和 git rebase 的区别**
 
 ```
-git merge 分支名称 ：合并指定分支到当前分支（完整项目）
+git merge 被合并分支名称    (例如项目A合并项目B,则在项目A中执行git merge B) 
 ```
 
 举个例子：
