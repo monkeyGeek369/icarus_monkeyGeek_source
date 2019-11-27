@@ -12,7 +12,7 @@ tags:
 	- XA规范
 keywords: 分布式,数据一致性,XA规范
 permalink:
-thumbnail:
+thumbnail: ../../image/xatransaction.png
 ---
 
 # XA简介
