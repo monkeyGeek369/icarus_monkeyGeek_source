@@ -197,6 +197,8 @@ https://github.com/seata/seata
 
 </br>
 
+参考资料如下:
+
 [1]http://www.cs.cornell.edu/andru/cs711/2002fa/reading/sagas.pdf
 
 [2]https://github.com/chanjarster/transactions/blob/master/saga.md
