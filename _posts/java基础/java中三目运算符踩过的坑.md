@@ -22,7 +22,7 @@ thumbnail:
 Integer hPaymentWayId = fullfillDTOShip != null ? fullfillDTOShip.getHPaymentWayId() : 0;
 ```
 
-看似正常的代码在遇到fullfillDTOShip.getHPaymentWayId()为null时会报NPE错误,为什么会这也呢?
+看似正常的代码在遇到fullfillDTOShip.getHPaymentWayId()为null时会报NPE错误,为什么会这样呢?
 
 <!--more-->
 
@@ -39,9 +39,9 @@ ConditionalOrExpression ? 表达式 : ConditionalExpression
 ConditionalOrExpression ? 表达式 : LambdaExpression
 ```
 
-三目运算符由?:将整体表达式分为三部分,依此称为第一操作数\第二操作数\第三操作数其中第一操作数被硬性要求必须时Boolean类型表达式,而整个三目运算符的运算结果由第二\第三操作数共同决定,就因为这个共同决定造成了我们本文开头的问题.
+三目运算符由?:将整体表达式分为三部分,依此称为第一操作数\第二操作数\第三操作数其中第一操作数被硬性要求必须为Boolean类型表达式,而整个三目运算符的运算结果由第二\第三操作数共同决定,就因为这个共同决定造成了我们本文开头的问题.
 
-第二操作数与第三操作数只能是布尔条件表达式\数值条件表达式\参考条件表达式,其它表达式均不支持,而第二和第三操作数所对应的不同表达式类型共同作用完整三目表达式结果,其中涉及到拆装箱问题(即引起NPE问题的元凶)
+第二操作数与第三操作数只能是布尔条件表达式\数值条件表达式\参考条件表达式,而第二和第三操作数所对应的不同表达式类型共同作用完整三目表达式结果,其中涉及到拆装箱问题(即引起NPE问题的元凶)
 
 </br>
 
@@ -76,7 +76,7 @@ System.out.print(bo3 + "\n");
 
 # 数值条件表达式
 
-数字条件表达式的类型确定如下：
+数值条件表达式的类型确定如下：
 
 - 如果第二个和第三个操作数具有相同的类型，那么这就是条件表达式的类型。
 
@@ -134,11 +134,13 @@ Integer in1 = 1;
 
 如果fullfillShipDTO.getHPaymentWayId()为null在进行拆箱操作时报NPE
 
+值得注意的是in3并不报错,因为返回结果直接为第二操作数的0而不会对第三操作数进行拆箱操作
+
 </br>
 
-# 参考条件表达式
+# 参考(引用)条件表达式
 
-如果引用条件表达式出现在分配上下文或调用上下文中（第[5.2节](https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html#jls-5.2)，第[5.3节](https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html#jls-5.3)），则它是一个多边形表达式。否则，它是一个独立的表达式。
+如果参考条件表达式出现在分配上下文或调用上下文中（第[5.2节](https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html#jls-5.2)，第[5.3节](https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html#jls-5.3)），则它是一个多边形表达式。否则，它是一个独立的表达式。
 
 当多引用条件表达式出现在目标类型为T的特定种类的上下文中时，其第二和第三操作数表达式类似地出现在目标类型为T的相同种类的上下文中。
 
@@ -152,7 +154,7 @@ Integer in1 = 1;
 
 参考条件表达式的含义是其可以为lambda表达式\Map\集合\自定义对象等
 
-<span style="color:red;">总结以下:当二\三操作数相同类型时表达式的值即为该类型,否则若出现不同则根据第二或第三操作数所对应的非原始类型进行装修转换操作,不进行拆箱操作</span>
+<span style="color:red;">总结以下:当二\三操作数相同类型时表达式的值即为该类型,否则若出现不同则根据第二或第三操作数所对应的非原始类型进行装箱转换操作,不进行拆箱操作</span>
 
 参考条件表达式相对安全,如下:
 
