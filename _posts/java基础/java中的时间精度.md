@@ -7,8 +7,8 @@ enname: javatime
 categories: java基础
 tags:
 	- java
-	- 时间精度
-keywords: java,时间精度
+	- java时间操作
+keywords: java,时间精度,时间操作
 permalink:
 thumbnail:
 ---
