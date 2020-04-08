@@ -5,7 +5,9 @@ date: 2020-02-12 11:26:59
 updated: 2020-02-12 11:26:59
 enname: orchestrator
 categories: UiPath
-tags: UiPath
+tags:
+	- UiPath
+	- RPA
 keywords: UiPath,orchestrator
 permalink:
 thumbnail:

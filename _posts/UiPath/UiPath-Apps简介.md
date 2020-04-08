@@ -5,7 +5,9 @@ date: 2020-02-13 10:46:35
 updated: 2020-02-13 10:46:35
 enname: UiPathApps
 categories: UiPath
-tags: UiPath
+tags:
+	- UiPath
+	- RPA
 keywords: UiPath,Apps
 permalink:
 thumbnail: ../../../image/UiPathAppsNotificationsFlowv.jpg
