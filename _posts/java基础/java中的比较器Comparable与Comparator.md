@@ -8,7 +8,8 @@ categories: java基础
 tags:
 	- java
 	- java比较器
-keywords: java,java比较器,Comparable,Comparator
+	- 排序
+keywords: java,java比较器,Comparable,Comparator,排序
 permalink:
 thumbnail:
 ---
@@ -182,9 +183,193 @@ student(age=10, grade=0),student(age=20, grade=0),student(age=30, grade=0),stude
 
 # Comparator
 
+老样子,想要讲解透彻用法还是要代码举例,我们先把必要的比较器对象创建好,具体如下:
+
+```java
+
+    //创建测试数组
+    private List<student> students = Lists.newArrayList();
+
+    //创建内部比较器对象--降序
+    Comparator<student> studentComparator_desc = new Comparator<student>() {
+        @Override
+        public int compare(student o1, student o2) {
+            // 入参o1:可以理解为排序队列中的后一个对象,即比较对象
+            // 入参o2:理解为排序队列的前一个对象,即被比较对象
+            if (o1.getAge() > o2.getAge()) {
+                return -1;
+            } else if (o1.getAge() < o2.getAge()) {
+                //解读:如果后一个对象小于前一个对象,那么符合我们的目标排序规则,则返回1
+                //因此我们可以想象一下,前大后小的序列是降序序列,以此我们可以理解升序序列
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+
+    };
+
+
+    //创建内部比较器对象--升序
+    Comparator<student> studentComparator_asc = new Comparator<student>() {
+        @Override
+        public int compare(student o1, student o2) {
+            // 入参o1:可以理解为排序队列中的后一个对象,即比较对象
+            // 入参o2:理解为排序队列的前一个对象,即被比较对象
+            if (o1.getAge() > o2.getAge()) {
+                //解读:如果后一个对象大于前一个对象,那么符合我们的目标排序规则,则返回1
+                //因此我们可以想象一下,前小后大的序列是升序序列,以此我们可以理解降序序列
+                return 1;
+            } else if (o1.getAge() < o2.getAge()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+    };
+
+
+    //创建内部比较器对象--升序
+    Comparator<student> studentComparator_grade_asc = new Comparator<student>() {
+        @Override
+        public int compare(student o1, student o2) {
+            // 入参o1:可以理解为排序队列中的后一个对象,即比较对象
+            // 入参o2:理解为排序队列的前一个对象,即被比较对象
+            if (o1.getGrade() > o2.getGrade()) {
+                //解读:如果后一个对象大于前一个对象,那么符合我们的目标排序规则,则返回1
+                //因此我们可以想象一下,前小后大的序列是升序序列,以此我们可以理解降序序列
+                return 1;
+            } else if (o1.getGrade() < o2.getGrade()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+    };
+    //创建内部比较器对象--降序
+    Comparator<Integer> studentComparator_grade_desc = new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            // 入参o1:可以理解为排序队列中的后一个对象,即比较对象
+            // 入参o2:理解为排序队列的前一个对象,即被比较对象
+            if (o1 < o2) {
+                //解读:如果后一个对象大于前一个对象,那么符合我们的目标排序规则,则返回1
+                //因此我们可以想象一下,前小后大的序列是升序序列,以此我们可以理解降序序列
+                return 1;
+            } else if (o1 > o2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+
+    };
+```
+
+接下来我们编写测试代码一窥究竟,先从简单比较方式开始,具体如下:
+
+```java
+@Test
+    public void publicSortMethod() {
+        //初始化测试数组
+        students.add(student.builder().age(10).build());
+        students.add(student.builder().age(30).build());
+        students.add(student.builder().age(50).build());
+        students.add(student.builder().age(10).build());
+        students.add(student.builder().age(20).build());
+        students.add(student.builder().age(40).build());
+        students.add(student.builder().age(60).build());
+
+        //排序前
+        printUtil.printList(students);
+
+        //排序--通过集合工具类Collections(既是student类已经默认实现comprartable比较器接口,并实现升序,这里也会按照降序比较器排序)
+        //Collections.sort(students,studentComparator);
+
+        //排序--通过集合工具类Arrays
+        //Arrays.sort();
+
+        //排序--通过stream(既是student类已经默认实现comprartable比较器接口,并实现升序,这里也会按照降序比较器排序)
+        students = students.stream().sorted(studentComparator_desc).collect(Collectors.toList());
+
+        //排序--通过stream(当前比较器的反向顺序)
+        //students = students.stream().sorted(studentComparator_desc.reversed()).collect(Collectors.toList());
+
+        //排序和排重--通过stream(因为比较器中已经定义两对象相等的情况即return 0,因此可以直接直用distinct())
+        //students = students.stream().sorted(studentComparator_desc).distinct().collect(Collectors.toList());
+
+        //排序多比较器--通过stream(这里只是简单举例升序,降序,实际业务中应该是根据不同属性进行不同排序)
+        //students = students.stream().sorted(studentComparator_desc).sorted(studentComparator_asc).collect(Collectors.toList());
+
+        //排序后
+        printUtil.printList(students);
+    }
+```
+
+Comparator的高级用法如下:
+
+```java
+@Test
+    public void otherSortMethod() {
+        //初始化测试数组
+        students.add(student.builder().age(10).grade(200).build());
+        students.add(student.builder().age(30).build());
+        students.add(student.builder().age(50).build());
+        students.add(student.builder().age(10).build());
+        students.add(student.builder().age(20).grade(500).build());
+        students.add(student.builder().age(40).build());
+        students.add(student.builder().age(60).build());
+
+        //排序前
+        printUtil.printList(students);
+
+        //1.thenComparing用法--针对相等情况下使用另一种比较器(年龄相等按照分数升序排序)
+        //students = students.stream().sorted(studentComparator_desc.thenComparing(studentComparator_grade_asc)).collect(Collectors.toList());
+        //直接利用grade排序
+        //students.sort(studentComparator_desc.thenComparing(e->e.getGrade()));
+        //利用grade指定比较器排序,注意指定的比较器不在是student对象
+        //students.sort(studentComparator_desc.thenComparing(e -> e.getGrade(), studentComparator_grade_desc));
+
+        //2.thenComparingInt实现对int对象的比较,入参为函数表达式
+        //students.sort(studentComparator_desc.thenComparingInt(e -> e.getGrade()));
+
+        //3.reversed用法--反向比较器
+        //students.sort(studentComparator_desc.reversed());
+
+        //4.naturalOrder用法-按照自然顺序排序(本例中按照age升序排序)
+        //students.sort(Comparator.naturalOrder());
+
+        //5.reverseOrder用法-按照反自然顺序排序(本例中按照age降序排序)
+        //students.sort(Comparator.reverseOrder());
+
+        //6.nullsFirst与nullsLast用法-解决如果排序的字段为null的情况下这条记录怎么排序的问题。nullsFirst是说将null记录排在最前面，而nullsLast是说将null记录排序在最后面。
+        //students.sort(Comparator.nullsLast(studentComparator_desc));
+
+        //7.comparing用法-直接指定用于定义比较规则的比较器对象或者函数
+        //students.sort(Comparator.comparing(e -> e.getAge()));
+        //students.sort(Comparator.comparing(e -> e.getGrade(), studentComparator_grade_desc));
+        students.sort(Comparator.comparingInt(e -> e.getAge()));
+
+        //排序后
+        printUtil.printList(students);
+    }
+```
 
 
 
+*<u>总结</u>*
+
+以上两段测试代码已经将Comparator讲解的比较透彻,总的来说Comparator是用来定义比较器对象的,适合原本不支持比较的类对象实现比较功能.对比较器(1,0,-1)的详细解说可参考[1]
+
+
+
+</br>
+
+参考:
+
+[1]https://www.cnblogs.com/maozp/p/11153403.html
 
 
 

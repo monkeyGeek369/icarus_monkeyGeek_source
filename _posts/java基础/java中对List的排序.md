@@ -8,20 +8,106 @@ categories: java基础
 tags:
 	- java
 	- List
-keywords: java,list
+	- 排序
+keywords: java,list,排序
 permalink:
 thumbnail:
 ---
 
+# 简介
 
+java中的排序本质上是实现对待排序对象的比较,即借助比较器实现排序,例如Comparator和Comparable等.<!--more-->当对象具备比较功能那么可以借助集合工具的排序算法来实现具体排序,例如Collections.sort以及stream.sort等.详细信息可参考[[java中的比较器Comparable与Comparator]](http://www.monkeygeek.cn/2020/4/7/compare/)
 
-<!--more-->
+</br>
+
+# 具体方案
+
+测试模型
+
+```java
+public class student implements Comparable<student>{
+
+    int age;
+
+    int grade;
+
+    //重写默认比较器---升序
+    @Override
+    public int compareTo(student o){
+        // 入参o:可以理解为排序队列中的前一个对象,即被比较对象
+        // this:理解为排序队列的后一个对象,即比较对象
+        if(o.getAge() > this.getAge()){
+            return -1;
+        }else if(o.getAge() < this.getAge()){
+            //解读:如果前一个对象小于后一个对象,那么符合我们的目标排序规则,则返回1
+            //因此我们可以想象一下,前小后大的序列是升序序列,以此我们可以理解降序序列
+            return 1;
+        }else {
+            return 0;
+        }
+    }
+}
+```
+
+先上代码
+
+```java
+//创建测试数组
+    private List<student> students = Lists.newArrayList();
+
+@Test
+    public void sortMethod() {
+        //初始化测试数组
+        students.add(student.builder().age(10).build());
+        students.add(student.builder().age(30).build());
+        students.add(student.builder().age(50).build());
+        students.add(student.builder().age(10).build());
+        students.add(student.builder().age(20).build());
+        students.add(student.builder().age(40).build());
+        students.add(student.builder().age(60).build());
+
+        //Comparable实践
+        //1.借助student类中实现的Comparable接口完成排序
+        //Collections.sort(students);
+        //students = students.stream().sorted();
+
+        //Comparator实践
+        //1.匿名内部类实现排序
+        Collections.sort(students, new Comparator<student>() {
+            @Override
+            public int compare(student o1, student o2) {
+                // 入参o:可以理解为排序队列中的前一个对象,即被比较对象
+                // this:理解为排序队列的后一个对象,即比较对象
+                if (o1.getAge() > o2.getAge()) {
+                    return -1;
+                } else if (o1.getAge() < o2.getAge()) {
+                    //解读:如果前一个对象小于后一个对象,那么符合我们的目标排序规则,则返回1
+                    //因此我们可以想象一下,前小后大的序列是升序序列,以此我们可以理解降序序列
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+        
+        //2.借助stream的sort
+        //根据年龄排序
+        students = students.stream().sorted(Comparator.comparing(student::getAge)).collect(Collectors.toList());
+        //根据年龄排序-反序
+        students = students.stream().sorted(Comparator.comparing(student::getAge).reversed()).collect(Collectors.toList());
+        //先根据年龄排序-如果遇到相等则再根据分数排序
+        students = students.stream().sorted(Comparator.comparing(student::getAge).thenComparing(student::getGrade)).collect(Collectors.toList());
+
+    }
+```
 
 
 
 </br>
 
-</br>
+*<u>总结</u>*
+
+排序的基础和前提是比较,若要实现比较则必须借助Comparator或Comparable(具体可参考[[java中的比较器Comparable与Comparator]](http://www.monkeygeek.cn/2020/4/7/compare/)),在比较实现后可借助集合工具内置排序算法进行排序.
 
 </br>
 
