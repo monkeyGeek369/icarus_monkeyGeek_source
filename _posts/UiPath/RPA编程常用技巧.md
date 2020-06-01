@@ -103,6 +103,20 @@ UiElement对象是Uipath中自定义的一种用于代表页面元素的对象�
 
 </br>
 
+# 10.特殊元素获取
+
+- chrome浏览器alert弹出框内容获取
+
+```html
+<html app='chrome.exe' title='::: Sinokor New e-Service :::' />
+<ctrl role='dialog' />
+<ctrl name='*' role='text' />
+```
+
+- 
+
+</br>
+
 # 其它问题解答
 
 - 浏览器分辨率问题导致的点击功能无法正确点击
@@ -114,7 +128,7 @@ UiElement对象是Uipath中自定义的一种用于代表页面元素的对象�
 - 通配符常用在过滤器或选择器中,例如<webctrl class='*inputField hal-input hal-olb-input sizeSmall*' tag='INPUT' />,其中的*则代表通配符
 
 
-  
+
 
 
 
