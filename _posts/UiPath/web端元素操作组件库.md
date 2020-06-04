@@ -44,7 +44,7 @@ thumbnail:
 
 第三行为浏览器弹出窗口的内容获取
 
-具体案例我已经封装成为工具组件,大家可自行使用,链接在此
+具体案例我已经封装成为工具组件,大家可自行使用,[链接在此](http://monkeygeek369.github.io/file/BrowserDialogIsExsit.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
 
 - 
 
