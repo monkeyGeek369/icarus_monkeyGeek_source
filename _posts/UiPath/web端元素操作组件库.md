@@ -46,7 +46,18 @@ thumbnail:
 
 具体案例我已经封装成为工具组件,大家可自行使用,[链接在此](http://monkeygeek369.github.io/file/BrowserDialogIsExsit.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
 
-- 
+</br>
+
+- 元素是否存在判断
+
+
+问题:UiPath编写RPA时能够支持判断元素是否存在,无论是web元素还是桌面端元素均可通过UiElementExsits组件进行判断,但是这样远远不够.例如有些时候页面加载非常缓慢,而此时我的UiElementExsits组件已经执行并超过了超时时间,那么结果将会是组件不存在.这样其实是错误的结果.
+
+分析:网站或应用老旧,网络延迟等导致的元素加载缓慢,从而无法真正判断元素是否存在
+
+解决方案:自行封装组件,加入重试机制.[链接在此](http://monkeygeek369.github.io/file/ElementIsExsit.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
+
+
 
 </br>
 
