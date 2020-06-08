@@ -16,9 +16,7 @@ thumbnail:
 
 # 简介
 
-<!--more-->
-
-借助UiPath实现RPA自动化的过程就是操作各种元素的过程,其中针对Web端各种页面元素的操作技巧和方式将在本文详细介绍.在使用UiPath编写自动化程序的过程中你或许会遇到如何判断页面元素是否存在?如何获取元素属性?如何获取浏览器弹出窗口内容?等问题,那么你来对地方了!
+借助UiPath实现RPA自动化的过程就是操作各种元素的过程,其中针对Web端各种页面元素的操作技巧和方式将在本文详细介绍.<!--more-->在使用UiPath编写自动化程序的过程中你或许会遇到如何判断页面元素是否存在?如何获取元素属性?如何获取浏览器弹出窗口内容?等问题,那么你来对地方了!
 
 </br>
 
@@ -57,7 +55,27 @@ thumbnail:
 
 解决方案:自行封装组件,加入重试机制.[链接在此](http://monkeygeek369.github.io/file/ElementIsExsit.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
 
+</br>
 
+- 获取组件属性
+
+描述:获取组件属性在UiPath中已经提供了GetAttribute控件去使用,但是在实际使用中非常不便利,例如
+
+```html
+<div id ="content" style="display: none;color:red;"></div>
+```
+
+在某些业务场景下需要知道id=content元素是否展示/隐藏,这个时候只能通过style属性中的display去判断.但通过GetAttribute无法直接过去display内容,获取的属性将是完整的字符串"display: none;color:red;",因此需要在对字符串进行去除空格\分割匹配等处理.非常繁琐.
+
+解决方案:将获取属性功能封装成可移植控件.[链接在此](http://monkeygeek369.github.io/file/ElementIsHaveAttribute.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
+
+</br>
+
+- 获取浏览器对象
+
+描述:我们在操作网页应用的时候必须借助某款浏览器,如chrome或Firefox,这个时候就需要控制浏览器的启动\页面的打开等初始化操作.
+
+解决方案:利用UiPath中的线程获取工具GetProcesses来判断线程是否启动,即浏览器是否启动,再利用OpenBrower打开浏览器或BrowerScope来附加到已打开浏览器的某个具体页面.[链接在此](http://monkeygeek369.github.io/file/GetBrowser.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
 
 </br>
 
