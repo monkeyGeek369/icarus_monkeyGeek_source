@@ -5,11 +5,12 @@
     <x:Property Name="txtValue" Type="InArgument(x:String)" />
     <x:Property Name="isClickBefore" Type="InArgument(x:Boolean)" />
     <x:Property Name="isCtrlABefore" Type="InArgument(x:Boolean)" />
+    <x:Property Name="isSetFocusBefore" Type="InArgument(x:Boolean)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1041,1233</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1041,1668</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>InputText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -65,30 +66,43 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InputText" sap:VirtualizedContainerService.HintSize="1021,1173" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InputText" sap:VirtualizedContainerService.HintSize="1021,1568" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[IsNothing(inputBrower) Or String.IsNullOrWhiteSpace(inputBrower.ToString)]" sap:VirtualizedContainerService.HintSize="979,1081" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[IsNothing(inputBrower) Or String.IsNullOrWhiteSpace(inputBrower.ToString)]" sap:VirtualizedContainerService.HintSize="979,1476" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// 针对桌面应用" />
       </If.Then>
       <If.Else>
-        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="600,928" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="600,1323" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
           <ui:BrowserScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="566,960" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence sap:VirtualizedContainerService.HintSize="566,1215" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[isClickBefore]" sap:VirtualizedContainerService.HintSize="524,221" sap2010:WorkflowViewState.IdRef="If_2">
+                <If Condition="[isSetFocusBefore]" DisplayName="在输入前焦点移至元素" sap:VirtualizedContainerService.HintSize="524,219" sap2010:WorkflowViewState.IdRef="If_4">
+                  <If.Then>
+                    <ui:SetFocus DelayBefore="{x:Null}" DelayMS="{x:Null}" DisplayName="Set Focus" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="SetFocus_1">
+                      <ui:SetFocus.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" WaitForReady="COMPLETE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </ui:SetFocus.Target>
+                    </ui:SetFocus>
+                  </If.Then>
+                </If>
+                <If Condition="[isClickBefore]" DisplayName="是否在输入前先点击" sap:VirtualizedContainerService.HintSize="524,219" sap2010:WorkflowViewState.IdRef="If_2">
                   <If.Then>
                     <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="在输入前先点击" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
                       <ui:Click.CursorPosition>
@@ -111,7 +125,7 @@
                     </ui:Click>
                   </If.Then>
                 </If>
-                <If Condition="[isCtrlABefore]" sap:VirtualizedContainerService.HintSize="524,471" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[isCtrlABefore]" DisplayName="在输入前全选" sap:VirtualizedContainerService.HintSize="524,469" sap2010:WorkflowViewState.IdRef="If_3">
                   <If.Then>
                     <Sequence sap:VirtualizedContainerService.HintSize="376,318" sap2010:WorkflowViewState.IdRef="Sequence_4">
                       <sap:WorkflowViewStateService.ViewState>

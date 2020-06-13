@@ -4,11 +4,13 @@
     <x:Property Name="removeNewLine" Type="InArgument(x:Boolean)" />
     <x:Property Name="target" Type="InArgument(x:String)" />
     <x:Property Name="retString" Type="OutArgument(x:String)" />
+    <x:Property Name="targetIsNull" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="retStringIsNull" Type="OutArgument(x:Boolean)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>546,761</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1025,1361</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>StringUtils_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -65,43 +67,109 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="StringUtils" sap:VirtualizedContainerService.HintSize="526,661" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="StringUtils" sap:VirtualizedContainerService.HintSize="1005,1261" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[removeSpace]" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[String.IsNullOrWhiteSpace(target)]" sap:VirtualizedContainerService.HintSize="963,1169" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Then>
-        <Assign DisplayName="移除空格" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_1">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[target]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String">[target.Replace(" ", [String].Empty)]</InArgument>
-          </Assign.Value>
-        </Assign>
+        <Sequence sap:VirtualizedContainerService.HintSize="305,254" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[targetIsNull]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_6">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[retStringIsNull]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
       </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="613,1016" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="571,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[targetIsNull]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+            </Assign.Value>
+          </Assign>
+          <If Condition="[removeSpace]" sap:VirtualizedContainerService.HintSize="571,214" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Assign DisplayName="移除空格" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[target]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[target.Replace(" ", [String].Empty)]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+          </If>
+          <If Condition="[removeNewLine]" sap:VirtualizedContainerService.HintSize="571,214" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Assign DisplayName="移除换行" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[target]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(target,"[\n]","")]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+          </If>
+          <Assign sap:VirtualizedContainerService.HintSize="571,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[retString]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[target]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <If Condition="[String.IsNullOrWhiteSpace(retString)]" sap:VirtualizedContainerService.HintSize="571,214" sap2010:WorkflowViewState.IdRef="If_4">
+            <If.Then>
+              <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_7">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[retStringIsNull]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Then>
+            <If.Else>
+              <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_8">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[retStringIsNull]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
     </If>
-    <If Condition="[removeNewLine]" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_2">
-      <If.Then>
-        <Assign DisplayName="移除换行" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_2">
-          <Assign.To>
-            <OutArgument x:TypeArguments="x:String">[target]</OutArgument>
-          </Assign.To>
-          <Assign.Value>
-            <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(target,"[\n]","")]</InArgument>
-          </Assign.Value>
-        </Assign>
-      </If.Then>
-    </If>
-    <Assign sap:VirtualizedContainerService.HintSize="484,61" sap2010:WorkflowViewState.IdRef="Assign_3">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[retString]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[target]</InArgument>
-      </Assign.Value>
-    </Assign>
   </Sequence>
 </Activity>
