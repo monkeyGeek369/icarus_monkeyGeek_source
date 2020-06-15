@@ -79,6 +79,32 @@ thumbnail:
 
 </br>
 
+- web元素集合匹配
+
+场景:针对web页面我们经常遇到对web页面元素的批量循环处理,例如针对web页面中的table表格需要遍历每一行,web下拉列表需要遍历每一个元素等等.常规的做法是首先获取这些集合元素的父容器,然后通过findchildren插件来获取内部子元素集合,进而实现遍历匹配.
+
+问题:简单的元素遍历实现方便但一些特殊业务场景我要进行元素的特殊处理,例如字符去除空格\换行处理,选中后点击操作等.每当遇到此类操作均需些复杂的重复逻辑,非常费时费力.
+
+解法:借助面向对象思路对业务逻辑进行封装,以实现可重复利用.[链接在此](http://monkeygeek369.github.io/file/CommonComponents/Common/WebElementsMatch.xaml)(也可在git仓库file文件夹内获取https://github.com/monkeyGeek369/icarus_monkeyGeek_source)
+
+![](../../../../image/webElementsMatch.png)
+
+1. inputBrower:网站页面对应的浏览器对象
+2. parentElementSelector:父容器选择器
+3. childrenFilter:父容器内部子元素过滤器
+4. elementsIsNull:待匹配集合元素是否空
+5. retElement:匹配成功后返回的集合元素
+6. isMatched:是否匹配成功
+7. matchString:需要匹配的字符串
+8. elements:待匹配元素集合
+9. isClickMatchedElement:匹配成功后是否点击该元素
+10. isContainMatchString:是否包含待匹配字符串即为匹配成功
+11. isPreManageString:待匹配字符串/被匹配元素字符串是否进行字符串预处理(移除空格/换行)
+
+
+
+</br>
+
 </br>
 
 <script>
