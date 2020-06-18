@@ -279,7 +279,7 @@ Web服务器解析请求，定位请求资源。服务器将资源复本写到TC
 
 **4、释放连接TCP连接**
 
-若connection 模式为close，则服务器主动关闭[TCP连接](http://www.jianshu.com/p/ef892323e68f)，客户端被动关闭连接，释放[TCP连接](http://www.jianshu.com/p/ef892323e68f);若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;
+若connection 模式为close，则服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;
 
 **5、客户端浏览器解析HTML内容**
 
@@ -289,13 +289,13 @@ Web服务器解析请求，定位请求资源。服务器将资源复本写到TC
 
 1、浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;
 
-2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立[TCP连接](http://www.jianshu.com/p/ef892323e68f);
+2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立TCP连接);
 
-3、浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为 [TCP 三次握手](http://www.jianshu.com/p/ef892323e68f)的第三个报文的数据发送给服务器;
+3、浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为TCP 三次握手的第三个报文的数据发送给服务器;
 
 4、服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;
 
-5、释放 [TCP连接](http://www.jianshu.com/p/ef892323e68f);
+5、释放TCP连接;
 
 6、浏览器将该 html 文本并显示内容; 　　
 
