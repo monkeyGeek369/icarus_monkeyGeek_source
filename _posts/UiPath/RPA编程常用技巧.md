@@ -50,6 +50,7 @@ System.Net
 - 新建数组:如New List(Of String)
 - 从指定数据源新建数组:如New List(Of String)() From { "vgm" }
 - 复杂数组的空判断:如IsNothing(JObject.FromObject(exsitContainers)("containers")) Or JObject.FromObject(exsitContainers)("containers").Count<=0
+- 初始化集合(数组)对象,例如,ICollection<UiElement>初始化格式为New List(Of UiElement)
 
 </br>
 
