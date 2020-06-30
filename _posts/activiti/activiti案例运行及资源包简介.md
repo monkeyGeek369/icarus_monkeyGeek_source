@@ -8,8 +8,8 @@ categories: activiti
 tags:
 	- activiti
 keywords: activiti
-permalink: ../../image/activiti3.png
-thumbnail:
+permalink:
+thumbnail: ../../image/activiti3.png
 ---
 
 本文将针对activiti官网提供的资源包以及案例程序做详细介绍，以方便初入人员快速了解activiti<!--more-->

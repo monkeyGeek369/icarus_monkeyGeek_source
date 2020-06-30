@@ -8,8 +8,8 @@ categories: activiti
 tags:
 	- activiti
 keywords: activiti,activiti简介
-permalink: ../../image/activitistructure.jpg
-thumbnail:
+permalink:
+thumbnail: ../../image/activitistructure.jpg
 ---
 
 # 七大接口
