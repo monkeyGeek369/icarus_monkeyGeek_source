@@ -113,23 +113,50 @@ String name="";
 
 ## 自定义注解
 
-</br>
+自定义注解即通过元注解来构建自己需要的注解
+
+```java
+@Target({METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@Documented
+public @interface RestMethod {
+
+Class<?> queryClass() default ObjectUtils.Null.class;
+
+boolean login() default false;
+
+long ttl() default 0;
+
+boolean parseOpenId() default false;
+
+boolean useCookie() default false;
+
+boolean headerContext() default true;
+
+}
+```
 
 </br>
 
-
+</br>
 
 # 注解的底层实现机制
 
-</br>
+![](../../../../image/annotationstruct.png)
+
+annotation的底层实现机制如上图所示，注解本质是一个继承了Annotation 的特殊接口，而该接口的具体实现类是Java 运行时生成的动态代理类。我们可以通过反射获取注解，返回的是Java 运行时生成的动态代理对象$Proxy1。通过代理对象调用自定义注解（接口）的方法，会最终调用AnnotationInvocationHandler 的invoke 方法。该方法会从memberValues 这个Map 中索引出对应的值。而memberValues 的来源是Java 常量池。
 
 </br>
 
-
+</br>
 
 # 注解的具体使用
 
+如上所属注解的实现机制是通过反射，那么在使用时无论何种业务、何种途径归根结底都是通过JVM提供的反射机制实现获取注解和使用，因此我们要构建自己的“注解处理器”，常见如下途径：
 
+- 注解与拦截器结合：通过拦截器传递的handler参数获取反射对象进而获取注解
+- 注解与AOP结合：通过AOP传递的ProceedingJoinPoint参数获取反射对象进而获取注解
 
 </br>
 
