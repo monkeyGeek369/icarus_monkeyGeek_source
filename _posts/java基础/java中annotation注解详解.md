@@ -7,9 +7,10 @@ enname: javaannotation
 categories: java基础
 tags:
 	- annotation注解
+	- Spring
 keywords: java,annotation,annotation注解,java注解
 permalink:
-thumbnail:
+thumbnail: ../../image/annotationstruct.png
 ---
 
 # 什么是注解

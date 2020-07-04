@@ -3,23 +3,75 @@ title: org.springframework.boot.web.servlet注解详解
 category: java基础
 date: 2020-06-30 21:25:45
 updated: 2020-06-30 21:25:45
-enname:
-categories:
+enname: annotationServlet
+categories: java基础
 tags:
-keywords:
+	- annotation注解
+	- Spring
+keywords: java,annotation,annotation注解,java注解,spring注解,ServletComponentScan注解
 permalink:
 thumbnail:
 ---
 
+# @ServletComponentScan
 
+通常标注在启动类上，用于设置servlet容器组建的扫描，被设定的范围内 Servlet、Filter、Listener可以直接通过@WebServlet、@WebFilter、@WebListener注解自动注册，无需其他代码<!--more-->
 
-<!--more-->
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Import({ServletComponentScanRegistrar.class})
+public @interface ServletComponentScan {
+@AliasFor("basePackages")
+String[] value() default {};
+
+@AliasFor("value")
+String[] basePackages() default {};
+
+Class<?>[] basePackageClasses() default {};
+}
+```
+
+- value与basePackages互设置别名
+- basePackageClasses：可以通过其来设置需扫描的包类路径
+
+```java
+@SpringBootApplication
+@ServletComponentScan("com.test")
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+```java
+package com.test
+
+@WebServlet(name="TestServlet",urlPatterns="/test")
+public class TestServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = 1L;
+
+	@Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+    		throws ServletException, IOException {
+        System.out.println("test");
+    }
+}
+```
 
 
 
 </br>
 
 </br>
+
+参考资料：
+
+[1]https://blog.csdn.net/m0_37739193/article/details/85097477
 
 </br>
 
