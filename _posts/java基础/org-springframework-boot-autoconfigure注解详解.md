@@ -15,7 +15,7 @@ thumbnail:
 
 # @SpringBootApplication
 
-详情可查看“Springboot体系结构及实现原理”
+详情可查看“Springboot体系结构及实现原理”<!--more-->
 
 ```java
 @Target({ElementType.TYPE})
