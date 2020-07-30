@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>794,1060</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>804,1060</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ElementIsExsit_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -67,7 +67,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ElementIsExsit" sap:VirtualizedContainerService.HintSize="774,1000" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ElementIsExsit" sap:VirtualizedContainerService.HintSize="784,1000" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="0" Name="currentRetryNum" />
     </Sequence.Variables>
@@ -77,13 +77,13 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="732,908" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="742,908" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Flowchart sap:VirtualizedContainerService.HintSize="698,800" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+          <Flowchart sap:VirtualizedContainerService.HintSize="708,800" sap2010:WorkflowViewState.IdRef="Flowchart_2">
             <Flowchart.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="retIsExsit" />
             </Flowchart.Variables>
@@ -94,7 +94,7 @@
                 <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
                 <av:Size x:Key="ShapeSize">60,75</av:Size>
                 <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,127.5</av:PointCollection>
-                <x:Double x:Key="Width">664</x:Double>
+                <x:Double x:Key="Width">674</x:Double>
                 <x:Double x:Key="Height">763.5</x:Double>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -111,7 +111,7 @@
               </sap:WorkflowViewStateService.ViewState>
               <ui:UiElementExists DisplayName="元素是否存在" Exists="[retIsExsit]" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                 <ui:UiElementExists.Target>
-                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" TimeoutMS="1000" WaitForReady="COMPLETE" />
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" TimeoutMS="1000" WaitForReady="NONE" />
                 </ui:UiElementExists.Target>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -174,7 +174,7 @@
                               </sap:WorkflowViewStateService.ViewState>
                               <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="获取元素" FoundElement="[retElement]" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
                                 <ui:WaitUiElementAppear.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" WaitForReady="INTERACTIVE">
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" WaitForReady="NONE">
                                     <ui:Target.TimeoutMS>
                                       <InArgument x:TypeArguments="x:Int32" />
                                     </ui:Target.TimeoutMS>
