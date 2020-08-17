@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1041,1668</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1041,1628</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>InputText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -167,15 +167,18 @@
                     </Sequence>
                   </If.Then>
                 </If>
-                <ui:TypeInto ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" DisplayName="输入内容" sap:VirtualizedContainerService.HintSize="524,96" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[txtValue]">
-                  <ui:TypeInto.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" WaitForReady="INTERACTIVE">
+                <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text" sap:VirtualizedContainerService.HintSize="524,96" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[txtValue]">
+                  <ui:SetValue.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]">
                       <ui:Target.TimeoutMS>
                         <InArgument x:TypeArguments="x:Int32" />
                       </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
                     </ui:Target>
-                  </ui:TypeInto.Target>
-                </ui:TypeInto>
+                  </ui:SetValue.Target>
+                </ui:SetValue>
               </Sequence>
             </ActivityAction>
           </ui:BrowserScope.Body>
