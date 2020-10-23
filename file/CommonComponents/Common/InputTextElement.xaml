@@ -10,7 +10,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1041,1628</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1041,1779</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>InputText_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -66,24 +66,24 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InputText" sap:VirtualizedContainerService.HintSize="1021,1568" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="InputText" sap:VirtualizedContainerService.HintSize="1021,1719" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[IsNothing(inputBrower) Or String.IsNullOrWhiteSpace(inputBrower.ToString)]" sap:VirtualizedContainerService.HintSize="979,1476" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[IsNothing(inputBrower) Or String.IsNullOrWhiteSpace(inputBrower.ToString)]" sap:VirtualizedContainerService.HintSize="979,1627" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <ui:Comment sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="// 针对桌面应用" />
       </If.Then>
       <If.Else>
-        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="600,1323" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+        <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="600,1474" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
           <ui:BrowserScope.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="566,1215" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence sap:VirtualizedContainerService.HintSize="566,1366" sap2010:WorkflowViewState.IdRef="Sequence_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -167,18 +167,22 @@
                     </Sequence>
                   </If.Then>
                 </If>
-                <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text" sap:VirtualizedContainerService.HintSize="524,96" sap2010:WorkflowViewState.IdRef="SetValue_1" Text="[txtValue]">
-                  <ui:SetValue.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[elementSelector]">
-                      <ui:Target.TimeoutMS>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:Target.TimeoutMS>
-                      <ui:Target.WaitForReady>
-                        <InArgument x:TypeArguments="ui:WaitForReady" />
-                      </ui:Target.WaitForReady>
-                    </ui:Target>
-                  </ui:SetValue.Target>
-                </ui:SetValue>
+                <If Condition="[String.IsNullOrWhiteSpace(txtValue)]" sap:VirtualizedContainerService.HintSize="524,247" sap2010:WorkflowViewState.IdRef="If_5">
+                  <If.Else>
+                    <ui:SetValue ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set Text" sap:VirtualizedContainerService.HintSize="334,96" sap2010:WorkflowViewState.IdRef="SetValue_2" Text="[txtValue]">
+                      <ui:SetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Selector="{x:Null}" Element="[elementSelector]">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:SetValue.Target>
+                    </ui:SetValue>
+                  </If.Else>
+                </If>
               </Sequence>
             </ActivityAction>
           </ui:BrowserScope.Body>
