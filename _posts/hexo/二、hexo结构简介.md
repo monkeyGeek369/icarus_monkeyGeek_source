@@ -70,7 +70,7 @@ permalink_defaults: # 网站永久链接格式的默认值
 
 # Directory
 source_dir: source # 指定资源文件夹
-public_dir: public # 指定公共文件夹，即生成的静态站点文件 
+public_dir: public # 指定公共文件夹，即生成的静态站点文件
 tag_dir: tags # 指定标签文件夹
 archive_dir: archives # 指定归档文件夹
 category_dir: categories # 指定分类文件夹
@@ -133,7 +133,6 @@ deploy:
   repo: https://github.com/monkeyGeek369/monkeyGeek369.github.io.git # 指定仓库连接
   branch: master # 指定分支
   message: #消息配置
-
 ```
 
 
