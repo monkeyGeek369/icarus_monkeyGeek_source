@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="ElementIsExsit" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="ElementIsExsit" this:ElementIsExsit.retryTimeSeconds="1" this:ElementIsExsit.retryNum="3" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="inputBrower" Type="InArgument(ui:Browser)" />
     <x:Property Name="elementSelector" Type="InArgument(x:String)" />
@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>804,1060</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>804,1059.5</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ElementIsExsit_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -67,7 +67,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ElementIsExsit" sap:VirtualizedContainerService.HintSize="784,1000" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ElementIsExsit" sap:VirtualizedContainerService.HintSize="784,999.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="0" Name="currentRetryNum" />
     </Sequence.Variables>
@@ -77,13 +77,13 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="742,908" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+    <ui:BrowserScope SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[inputBrower]" BrowserType="Chrome" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="742,907.5" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Flowchart sap:VirtualizedContainerService.HintSize="708,800" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+          <Flowchart sap:VirtualizedContainerService.HintSize="708,799.5" sap2010:WorkflowViewState.IdRef="Flowchart_2">
             <Flowchart.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="retIsExsit" />
             </Flowchart.Variables>
@@ -105,11 +105,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">389,343</av:Point>
-                  <av:Size x:Key="ShapeSize">200,53</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">489,396 489,446</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,51.5</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">489,394.5 489,446</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:UiElementExists DisplayName="元素是否存在" Exists="[retIsExsit]" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+              <ui:UiElementExists DisplayName="元素是否存在" Exists="[retIsExsit]" sap:VirtualizedContainerService.HintSize="200,51.5" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
                 <ui:UiElementExists.Target>
                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" TimeoutMS="1000" WaitForReady="NONE" />
                 </ui:UiElementExists.Target>
@@ -124,11 +124,11 @@
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">357.5,446</av:Point>
-                      <av:Size x:Key="ShapeSize">263,61</av:Size>
+                      <av:Size x:Key="ShapeSize">263,60</av:Size>
                       <av:PointCollection x:Key="ConnectorLocation">489,507 489,596</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="重试次数更新" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign DisplayName="重试次数更新" sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Int32">[currentRetryNum]</OutArgument>
                     </Assign.To>
@@ -160,7 +160,7 @@
                               <av:Point x:Key="ShapeLocation">251,676.5</av:Point>
                               <av:Size x:Key="ShapeSize">78,87</av:Size>
                               <av:PointCollection x:Key="FalseConnector">329,720 346.5,720 346.5,482 301.55,482 301.55,420.5 271.55,420.5</av:PointCollection>
-                              <av:PointCollection x:Key="TrueConnector">251,720 140,720 140,627.38</av:PointCollection>
+                              <av:PointCollection x:Key="TrueConnector">251,720 140,720 140,625.88</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <FlowDecision.True>
@@ -168,11 +168,11 @@
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">40,574.38</av:Point>
-                                  <av:Size x:Key="ShapeSize">200,53</av:Size>
+                                  <av:Size x:Key="ShapeSize">200,51.5</av:Size>
                                   <av:PointCollection x:Key="ConnectorLocation">140,574.38 140,544.38 140.05,544.38 140.05,451</av:PointCollection>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="获取元素" FoundElement="[retElement]" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
+                              <ui:WaitUiElementAppear WaitActive="{x:Null}" WaitVisible="{x:Null}" DisplayName="获取元素" FoundElement="[retElement]" sap:VirtualizedContainerService.HintSize="200,51.5" sap2010:WorkflowViewState.IdRef="WaitUiElementAppear_1">
                                 <ui:WaitUiElementAppear.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="[elementSelector]" WaitForReady="NONE">
                                     <ui:Target.TimeoutMS>
@@ -191,10 +191,10 @@
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <av:Point x:Key="ShapeLocation">8.55000000000001,390</av:Point>
-                                      <av:Size x:Key="ShapeSize">263,61</av:Size>
+                                      <av:Size x:Key="ShapeSize">263,60</av:Size>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <Assign DisplayName="返回值设置" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                  <Assign DisplayName="返回值设置" sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_1">
                                     <Assign.To>
                                       <OutArgument x:TypeArguments="x:Boolean">[isExsit]</OutArgument>
                                     </Assign.To>
@@ -221,11 +221,11 @@
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">168.5,127.5</av:Point>
-                              <av:Size x:Key="ShapeSize">263,61</av:Size>
+                              <av:Size x:Key="ShapeSize">263,60</av:Size>
                               <av:PointCollection x:Key="ConnectorLocation">300,188.5 300,238.5</av:PointCollection>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign DisplayName="初始化结果" sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_2">
+                          <Assign DisplayName="初始化结果" sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_2">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:Boolean">[retIsExsit]</OutArgument>
                             </Assign.To>

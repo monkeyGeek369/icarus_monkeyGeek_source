@@ -1,0 +1,99 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ElementIsExsitTest" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="396,999.5" sap2010:WorkflowViewState.IdRef="ElementIsExsitTest_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ElementIsExsitTest" sap:VirtualizedContainerService.HintSize="376,939.5" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:Browser" Name="browser" />
+      <Variable x:TypeArguments="x:Boolean" Name="isExsit" />
+      <Variable x:TypeArguments="ui:UiElement" Name="retElement" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="334,367.5" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//isExsit&#xD;&#xA;组件返回值，元素是否存在&#xA;&#xA;//isRetElement&#xA;是否返回判断存在的组件&#xD;&#xA;&#xA;//waitExsit&#xA;是否等待存在，true等待元素存在，false等待元素消失，默认true&#xD;&#xA;&#xA;//inputBrower&#xA;浏览器对象&#xD;&#xA;&#xA;//retryNum&#xD;&#xA;重试次数，默认3&#xA;&#xA;//retryTimeSeconds&#xD;&#xA;重试时间间隔，默认1秒&#xA;&#xA;//elementSelector&#xD;&#xA;元素选择器字符串&#xA;&#xA;//retElement&#xD;&#xA;返回的存在元素对象&#xA;" />
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetBrowser workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Common\GetBrowser.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <OutArgument x:TypeArguments="ui:Browser" x:Key="browser">[browser]</OutArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="taskId" />
+        <InArgument x:TypeArguments="x:String" x:Key="traceId" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:NavigateTo Browser="[browser]" DisplayName="导航到登录页面" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="NavigateTo_1" Url="www.baidu.com">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:NavigateTo>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke ElementIsExsit workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Common\ElementIsExsit.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="ui:Browser" x:Key="inputBrower">[browser]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="elementSelector" xml:space="preserve">&lt;html app='chrome.exe' title='百度一下，你就知道' /&gt;
+&lt;webctrl id='su' tag='INPUT' /&gt;</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="retryTimeSeconds">1</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="retryNum">9</InArgument>
+        <OutArgument x:TypeArguments="x:Boolean" x:Key="isExsit">[isExsit]</OutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="waitExsit">True</InArgument>
+        <OutArgument x:TypeArguments="ui:UiElement" x:Key="retElement">[retElement]</OutArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="isRetElement">False</InArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke SendRpaTaskLog workflow" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Common\SendRpaTaskLog.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="message" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="taskId" />
+        <InArgument x:TypeArguments="x:Boolean" x:Key="status">[isExsit]</InArgument>
+        <InArgument x:TypeArguments="x:Object" x:Key="data">[retElement]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="traceId" />
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+  </Sequence>
+</Activity>
