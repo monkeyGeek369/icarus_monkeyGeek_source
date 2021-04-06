@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="IEnumerableIsNull" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="IEnumerableIsNull" this:IEnumerableIsNull.checkType="icollectionObjects" this:IEnumerableIsNull.isThrowError="True" this:IEnumerableIsNull.throwErrorTitle="数据集合为空" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="checkType" Type="InArgument(x:String)" />
     <x:Property Name="isThrowError" Type="InArgument(x:Boolean)" />
@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>824,1903</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>546,727</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>IEnumerableIsNull_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -67,7 +67,7 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="IEnumerableIsNull" sap:VirtualizedContainerService.HintSize="681,1274" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="IEnumerableIsNull" sap:VirtualizedContainerService.HintSize="526,667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="isChecked" />
     </Sequence.Variables>
@@ -77,7 +77,7 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[String.IsNullOrWhiteSpace(checkType)]" sap:VirtualizedContainerService.HintSize="639,213" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[String.IsNullOrWhiteSpace(checkType)]" sap:VirtualizedContainerService.HintSize="484,209" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Throw Exception="[New Exception(&quot;集合判空-集合类型为空&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3">
           <sap:WorkflowViewStateService.ViewState>
@@ -88,7 +88,7 @@
         </Throw>
       </If.Then>
     </If>
-    <Flowchart DisplayName="ienumerableUis集合类型" sap:VirtualizedContainerService.HintSize="639,53" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+    <Flowchart DisplayName="ienumerableUis集合类型" sap:VirtualizedContainerService.HintSize="484,51.5" sap2010:WorkflowViewState.IdRef="Flowchart_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -106,11 +106,11 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">465,379.5</av:Point>
-            <av:Size x:Key="ShapeSize">263,61</av:Size>
+            <av:Size x:Key="ShapeSize">263,60</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">596.5,440.5 596.5,540 481.5,540</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_3">
           <Assign.To>
             <OutArgument x:TypeArguments="x:Boolean">[isNull]</OutArgument>
           </Assign.To>
@@ -128,10 +128,10 @@
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <av:Point x:Key="ShapeLocation">218.5,509.5</av:Point>
-                <av:Size x:Key="ShapeSize">263,61</av:Size>
+                <av:Size x:Key="ShapeSize">263,60</av:Size>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+            <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_5">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Boolean">[isChecked]</OutArgument>
               </Assign.To>
@@ -162,11 +162,11 @@
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <av:Point x:Key="ShapeLocation">8.5,379.5</av:Point>
-                <av:Size x:Key="ShapeSize">263,61</av:Size>
+                <av:Size x:Key="ShapeSize">263,60</av:Size>
                 <av:PointCollection x:Key="ConnectorLocation">140,440.5 140,540 218.5,540</av:PointCollection>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_4">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Boolean">[isNull]</OutArgument>
               </Assign.To>
@@ -212,7 +212,7 @@
       </FlowDecision>
       <x:Reference>__ReferenceID0</x:Reference>
     </Flowchart>
-    <Flowchart DisplayName="icollectionObjects集合类型" sap:VirtualizedContainerService.HintSize="639,53" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart DisplayName="icollectionObjects集合类型" sap:VirtualizedContainerService.HintSize="484,51.5" sap2010:WorkflowViewState.IdRef="Flowchart_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -251,11 +251,11 @@
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <av:Point x:Key="ShapeLocation">8.5,379.5</av:Point>
-                    <av:Size x:Key="ShapeSize">263,61</av:Size>
+                    <av:Size x:Key="ShapeSize">263,60</av:Size>
                     <av:PointCollection x:Key="ConnectorLocation">140,440.5 140,540 218.5,540</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_6">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[isNull]</OutArgument>
                   </Assign.To>
@@ -273,10 +273,10 @@
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">218.5,509.5</av:Point>
-                        <av:Size x:Key="ShapeSize">263,61</av:Size>
+                        <av:Size x:Key="ShapeSize">263,60</av:Size>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_7">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[isChecked]</OutArgument>
                       </Assign.To>
@@ -309,11 +309,11 @@
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">465,379.5</av:Point>
-                        <av:Size x:Key="ShapeSize">263,61</av:Size>
+                        <av:Size x:Key="ShapeSize">263,60</av:Size>
                         <av:PointCollection x:Key="ConnectorLocation">596.5,440.5 596.5,540 481.5,540</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_8">
+                    <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[isNull]</OutArgument>
                       </Assign.To>
@@ -342,7 +342,7 @@
       <x:Reference>__ReferenceID9</x:Reference>
       <x:Reference>__ReferenceID10</x:Reference>
     </Flowchart>
-    <Flowchart DisplayName="icollectionUis集合类型" sap:VirtualizedContainerService.HintSize="639,53" sap2010:WorkflowViewState.IdRef="Flowchart_4">
+    <Flowchart DisplayName="icollectionUis集合类型" sap:VirtualizedContainerService.HintSize="484,51.5" sap2010:WorkflowViewState.IdRef="Flowchart_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -381,11 +381,11 @@
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <av:Point x:Key="ShapeLocation">8.5,379.5</av:Point>
-                    <av:Size x:Key="ShapeSize">263,61</av:Size>
+                    <av:Size x:Key="ShapeSize">263,60</av:Size>
                     <av:PointCollection x:Key="ConnectorLocation">140,440.5 140,540 218.5,540</av:PointCollection>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_9">
+                <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_9">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">[isNull]</OutArgument>
                   </Assign.To>
@@ -403,10 +403,10 @@
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">218.5,509.5</av:Point>
-                        <av:Size x:Key="ShapeSize">263,61</av:Size>
+                        <av:Size x:Key="ShapeSize">263,60</av:Size>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_10">
+                    <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_10">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[isChecked]</OutArgument>
                       </Assign.To>
@@ -439,11 +439,11 @@
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">465,379.5</av:Point>
-                        <av:Size x:Key="ShapeSize">263,61</av:Size>
+                        <av:Size x:Key="ShapeSize">263,60</av:Size>
                         <av:PointCollection x:Key="ConnectorLocation">596.5,440.5 596.5,540 481.5,540</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_11">
+                    <Assign sap:VirtualizedContainerService.HintSize="263,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[isNull]</OutArgument>
                       </Assign.To>
@@ -472,10 +472,10 @@
       <x:Reference>__ReferenceID15</x:Reference>
       <x:Reference>__ReferenceID16</x:Reference>
     </Flowchart>
-    <Flowchart DisplayName="结果处理" sap:VirtualizedContainerService.HintSize="639,650" sap2010:WorkflowViewState.IdRef="Flowchart_3">
+    <Flowchart DisplayName="结果处理" sap:VirtualizedContainerService.HintSize="484,51.5" sap2010:WorkflowViewState.IdRef="Flowchart_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
           <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
           <av:Size x:Key="ShapeSize">60,75</av:Size>
