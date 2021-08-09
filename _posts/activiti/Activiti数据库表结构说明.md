@@ -7,6 +7,7 @@ enname: activititable
 categories: activiti
 tags:
 	- activiti
+	- 面试
 keywords: activiti,表结构
 permalink:
 thumbnail:

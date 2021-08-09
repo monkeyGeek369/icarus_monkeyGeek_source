@@ -8,6 +8,7 @@ categories: mq
 tags:
 	- mq
 	- rabbitmq
+	- 面试
 keywords: SimpleMessageListenerContainer、DirectMessageListenerContainer、rabbitmq
 permalink:
 thumbnail:
@@ -307,6 +308,7 @@ java.lang.IllegalStateException: Channel closed; cannot ack/nack^@#\tat org.spri
 - consumersByQueue：以队列名称为key的消费者map，一个queue可能对应多个消费者
 - taskScheduler：线程池ThreadPoolTaskScheduler，支持容器内所有消费者
 - consumersPerQueue：每一个队列设定的消费者数量，即channel数量
+- monitorInterval：尝试重启消费者的时间间隔
 
 </br>
 

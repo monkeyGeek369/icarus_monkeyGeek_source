@@ -7,6 +7,7 @@ enname: activitidea
 categories: activiti
 tags:
 	- activiti
+	- 面试
 keywords: activiti,IDEA集成activiti
 permalink:
 thumbnail: ../../image/activitidea1.png

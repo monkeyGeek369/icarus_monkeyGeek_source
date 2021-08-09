@@ -8,6 +8,7 @@ categories: java基础
 tags:
 	- annotation注解
 	- Spring
+	- 面试
 keywords: java,annotation,annotation注解,java注解,autoconfigure注解
 permalink:
 thumbnail:

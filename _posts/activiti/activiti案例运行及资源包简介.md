@@ -7,6 +7,7 @@ enname: activitisource
 categories: activiti
 tags:
 	- activiti
+	- 面试
 keywords: activiti
 permalink:
 thumbnail: ../../image/activiti3.png

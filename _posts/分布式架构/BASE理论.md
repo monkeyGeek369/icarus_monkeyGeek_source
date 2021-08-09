@@ -10,6 +10,7 @@ tags:
 	- 数据一致性
 	- 事务
 	- BASE理论
+	- 面试
 keywords: 分布式,数据一致性,BASE理论
 permalink:
 thumbnail:

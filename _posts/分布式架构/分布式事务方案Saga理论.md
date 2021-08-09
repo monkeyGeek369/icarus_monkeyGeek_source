@@ -10,6 +10,7 @@ tags:
 	- 数据一致性
 	- 事务
 	- Saga
+	- 面试
 keywords: 分布式,Saga,数据一致性,事务
 permalink:
 thumbnail:

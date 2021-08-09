@@ -7,6 +7,7 @@ enname: gremlin-line
 categories: 数据库
 tags:
 	- janusGraph
+	- 面试
 keywords: 图数据库，janusGraph，graph database，数据库,Gremlin
 permalink:
 thumbnail:

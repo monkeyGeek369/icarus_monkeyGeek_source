@@ -8,6 +8,7 @@ categories: java基础
 tags:
 	- java
 	- java8新特性
+	- 面试
 keywords: java,java基础,stream,java8新特性
 permalink:
 thumbnail:

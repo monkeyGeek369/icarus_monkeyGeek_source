@@ -7,6 +7,7 @@ enname: activitispring
 categories: activiti
 tags:
 	- activiti
+	- 面试
 keywords: activiti,Springboot配置activiti
 permalink:
 thumbnail:

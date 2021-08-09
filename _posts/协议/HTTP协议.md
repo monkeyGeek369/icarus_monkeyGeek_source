@@ -7,6 +7,7 @@ enname: http
 categories: 网络协议
 tags:
 	- 网络协议
+	- 面试
 keywords: HTTP,网络协议,HTTP协议,HTTP详解
 permalink:
 thumbnail: ../../image/httpmessage.jpg

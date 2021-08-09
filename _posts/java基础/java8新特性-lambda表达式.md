@@ -9,6 +9,7 @@ tags:
 	- java
 	- java8新特性
 	- lambda
+	- 面试
 keywords: java,java8新特性,lambda
 permalink:
 thumbnail:

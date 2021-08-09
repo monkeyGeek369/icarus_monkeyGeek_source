@@ -8,6 +8,7 @@ categories: mq
 tags:
 	- mq
 	- rabbitmq
+	- 面试
 keywords: rabbitmq、mq、消息积压
 permalink:
 thumbnail:

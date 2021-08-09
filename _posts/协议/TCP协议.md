@@ -7,6 +7,7 @@ enname: tcp
 categories: 网络协议
 tags:
 	- 网络协议
+	- 面试
 keywords: TCP,网络协议,TCP协议,TCP详解
 permalink:
 thumbnail: ../../image/tcpmessage.png

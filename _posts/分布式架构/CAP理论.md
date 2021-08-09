@@ -10,6 +10,7 @@ tags:
 	- 数据一致性
 	- 事务
 	- CAP理论
+	- 面试
 keywords: 分布式,数据一致性,CAP理论
 permalink:
 thumbnail: ../../image/cap.png

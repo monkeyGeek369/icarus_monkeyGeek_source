@@ -9,6 +9,7 @@ tags:
 	- 算法
 	- paxos
 	- 分布式一致性
+	- 面试
 keywords:
 	- 算法
 	- paxos

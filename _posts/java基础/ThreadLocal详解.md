@@ -8,6 +8,7 @@ categories: java基础
 tags:
 	- java
 	- 线程与进程
+	- 面试
 keywords: java、ThreadLocal
 permalink:
 thumbnail:

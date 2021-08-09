@@ -8,6 +8,7 @@ categories: mq
 tags:
 	- mq
 	- rabbitmq
+	- 面试
 keywords: rabbitmq、connection、channel
 permalink:
 thumbnail:

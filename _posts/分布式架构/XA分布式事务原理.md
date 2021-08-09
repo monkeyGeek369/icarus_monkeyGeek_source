@@ -10,6 +10,7 @@ tags:
 	- 数据一致性
 	- 事务
 	- XA规范
+	- 面试
 keywords: 分布式,数据一致性,XA规范
 permalink:
 thumbnail: ../../image/xatransaction.png
