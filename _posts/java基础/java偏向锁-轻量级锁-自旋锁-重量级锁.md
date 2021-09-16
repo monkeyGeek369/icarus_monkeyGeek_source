@@ -4,7 +4,7 @@ category: java基础
 date: 2021-08-09 20:23:12
 updated: 2021-08-09 20:23:12
 enname: java-lock
-categories:java基础
+categories: java基础
 tags:
 	- java
 	- 锁
