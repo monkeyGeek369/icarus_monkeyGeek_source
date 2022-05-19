@@ -7,7 +7,6 @@ enname: janusGraph-brief
 categories: 数据库
 tags:
 	- janusGraph
-	- 面试
 keywords: 图数据库，janusGraph，graph database，数据库
 permalink:
 thumbnail: ../../image/janusgraph-layer.png

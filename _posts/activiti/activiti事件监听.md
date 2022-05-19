@@ -7,7 +7,6 @@ enname: activitilisten
 categories: activiti
 tags:
 	- activiti
-	- 面试
 keywords: activiti,事件监听
 permalink:
 thumbnail:

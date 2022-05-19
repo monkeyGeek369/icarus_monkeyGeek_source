@@ -7,7 +7,6 @@ enname: activitierror
 categories: activiti
 tags:
 	- activiti
-	- 面试
 keywords: activiti,activiti常见问题
 permalink:
 thumbnail: ../../image/activitierror3.png

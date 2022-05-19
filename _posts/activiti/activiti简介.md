@@ -7,7 +7,6 @@ enname: activitiIntroduction
 categories: activiti
 tags:
 	- activiti
-	- 面试
 keywords: activiti,activiti简介
 permalink:
 thumbnail: ../../image/activitistructure.jpg
