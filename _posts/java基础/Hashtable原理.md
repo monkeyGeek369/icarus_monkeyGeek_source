@@ -17,7 +17,7 @@ thumbnail:
 
 - 是一个**散列表**，它存储的内容是**键值对(key-value)映射**<!--more-->
 - **继承于Dictionary**，实现了Map、Cloneable、java.io.Serializable接口
-- 是**同步的**，这意味着它是线程安全的
+- 是**同步的**，通过悲观锁synchronized实现，这意味着它是线程安全的
 - key、value都不可以为null
 - 映射不是有序的
 - 数据结构由数组+单向列表组成，数组决定桶的数量，单向列表采用链表法避免hash冲突
