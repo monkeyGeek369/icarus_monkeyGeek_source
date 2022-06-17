@@ -6,8 +6,7 @@ updated: 2021-05-21 20:12:34
 enname: threadlocal
 categories: java基础
 tags:
-	- java
-	- 线程与进程
+	- 多线程
 	- 面试
 keywords: java、ThreadLocal
 permalink:

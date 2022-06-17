@@ -6,7 +6,6 @@ updated: 2021-08-09 20:23:12
 enname: java-lock
 categories: java基础
 tags:
-	- java
 	- 锁
 	- 面试
 keywords: 偏向锁、轻量级锁、自旋锁、重量级锁

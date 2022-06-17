@@ -6,7 +6,6 @@ updated: 2021-08-31 20:38:28
 enname: garbage-collection
 categories: java基础
 tags:
-	- java
 	- 面试
 keywords: java、垃圾回收、面试
 permalink:

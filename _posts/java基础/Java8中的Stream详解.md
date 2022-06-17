@@ -6,8 +6,6 @@ updated: 2020-04-15 19:28:21
 enname: java8Stream
 categories: java基础
 tags:
-	- java
-	- java8新特性
 	- 面试
 keywords: java,java基础,stream,java8新特性
 permalink:

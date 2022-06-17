@@ -6,7 +6,6 @@ updated: 2021-08-09 21:38:15
 enname: jdk-invoke
 categories: java基础
 tags:
-	- java
 	- 面试
 keywords: java、动态代理
 permalink:

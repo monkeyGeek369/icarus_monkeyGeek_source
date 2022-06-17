@@ -6,9 +6,6 @@ updated: 2020-04-15 20:36:17
 enname: lambda
 categories: java基础
 tags:
-	- java
-	- java8新特性
-	- lambda
 	- 面试
 keywords: java,java8新特性,lambda
 permalink:

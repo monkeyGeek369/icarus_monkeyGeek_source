@@ -6,8 +6,6 @@ updated: 2020-04-15 20:35:52
 enname: instanceMethod
 categories: java基础
 tags:
-	- java
-	- java8新特性
 	- 面试
 keywords: java,java8新特性,方法引用
 permalink:

@@ -6,9 +6,6 @@ updated: 2020-04-07 21:48:37
 enname: compare
 categories: java基础
 tags:
-	- java
-	- java比较器
-	- 排序
 	- 面试
 keywords: java,java比较器,Comparable,Comparator,排序
 permalink:

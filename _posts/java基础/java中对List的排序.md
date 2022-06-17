@@ -6,9 +6,7 @@ updated: 2020-04-07 21:16:06
 enname: list_sort
 categories: java基础
 tags:
-	- java
-	- List
-	- 排序
+	- java集合
 	- 面试
 keywords: java,list,排序
 permalink:

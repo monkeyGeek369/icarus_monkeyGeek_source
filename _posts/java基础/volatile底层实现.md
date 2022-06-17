@@ -8,6 +8,7 @@ categories: java基础
 tags:
 	- 面试
 	- 多线程
+	- 锁
 keywords: volatile
 permalink:
 thumbnail:
