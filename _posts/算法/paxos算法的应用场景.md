@@ -7,7 +7,6 @@ enname: paxosUsed
 categories: 算法
 tags:
 	- 算法
-	- paxos
 	- 分布式一致性
 	- 面试
 keywords:
