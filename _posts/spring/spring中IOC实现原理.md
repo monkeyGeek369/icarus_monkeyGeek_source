@@ -7,7 +7,6 @@ enname: ioc
 categories: spring
 tags:
 	- 面试
-	- spring
 keywords: ioc
 permalink:
 thumbnail:

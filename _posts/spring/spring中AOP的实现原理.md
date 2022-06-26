@@ -7,7 +7,6 @@ enname: aop
 categories: spring
 tags:
 	- 面试
-	- spring
 keywords: aop
 permalink:
 thumbnail:
