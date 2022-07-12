@@ -107,16 +107,6 @@ Eureka Client 和 Eureka Server 可以使用 JSON/XML 格式进行通讯。在�
 
 
 
-
-
-
-
-
-
-
-
-
-
 参考资料
 
 [1]https://blog.csdn.net/u012105931/article/details/104659073
