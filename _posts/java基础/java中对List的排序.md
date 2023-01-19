@@ -7,7 +7,6 @@ enname: list_sort
 categories: java基础
 tags:
 	- java集合
-	- 面试
 keywords: java,list,排序
 permalink:
 thumbnail:

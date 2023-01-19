@@ -6,7 +6,6 @@ updated: 2022-06-08 23:24:37
 enname: restful
 categories: 软件技术
 tags:
-	- 面试
 keywords: rest,restful
 permalink:
 thumbnail:

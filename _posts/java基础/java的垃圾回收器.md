@@ -7,6 +7,7 @@ enname: garbage-collection
 categories: java基础
 tags:
 	- 面试
+	- jvm
 keywords: java、垃圾回收、面试
 permalink:
 thumbnail:

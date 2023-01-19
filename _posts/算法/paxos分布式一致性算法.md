@@ -19,12 +19,10 @@ thumbnail: ../../image/Base-Paxos基础流程.png
 
 # 前言
 
-*Google Chubby的作者Mike Burrows说过这个世界上只有一种一致性算法，那就是Paxos，其它的算法都是残次品。*
+*Google Chubby的作者Mike Burrows说过这个世界上只有一种一致性算法，那就是Paxos，其它的算法都是残次品。*<!--more-->
 *Paxos算法问世已经有将近30年的历史了，是目前公认最有效的解决分布式场景下一致性问题的算法之一，但是缺点是比较难懂，工程化比较难。*
 
 Paxos算法是用来解决分布式系统中，如何就某个值达成一致的算法。
-
-<!--more-->
 
 </br>
 

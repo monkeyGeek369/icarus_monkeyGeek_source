@@ -7,7 +7,6 @@ enname: ternary
 categories: java基础
 tags:
 	- java语法基础
-	- 面试
 keywords: java,语法基础,java基础,三目运算符
 permalink:
 thumbnail:
