@@ -250,11 +250,13 @@ RabbitMQ 客户端中与事务机制相关的方法有三个:
 
 - channel .basicNack(deliveryTag,false,true)
 
-  不确认deliveryTag对应的消息。第二个参数是否应用于多消息，第三个参数是否requeue。可以nack该消费者先前接收未ack的所有消息。nack后的消息也会被自己消费到。
+  第一个参数：消息的唯一标识
+  第二个参数：是否否定应答多条消息，true时否定本消息及之前的多条消息，false只否定本消息
+  第三个参数：是否重回队列。true重回，false丢弃过给到私信队列
 
 - channel .basicReject(deliveryTag,true)
 
-  拒绝deliveryTag对应的消息，第二个参数是否requeue，true则重新入队列
+  同basicNack的1.3参数
 
 - channel. basicRecover(true)
 

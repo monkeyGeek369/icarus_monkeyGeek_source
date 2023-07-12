@@ -271,7 +271,37 @@ System.out.println("ints sum is:" + ints.stream().reduce(0, (sum, item) -> sum +
 
 
 
+高级用法如下案例:重点是看范型与函数式编程的结合
 
+```java
+//实现双map转换
+public static <K1,K2,T,U> Map<K1,Map<K2,U>> toNestMap(Collection<T> c,Function<T,K1> keyExe1,
+                                                          Function<T,U> keyExe2,
+                                                          Function<U,K2> keyExe3){
+        return c.stream().collect(Collectors.groupingBy(keyExe1::apply,
+                Collectors.collectingAndThen(Collectors.mapping(keyExe2::apply,Collectors.toList()),
+                        list -> list.stream().collect(Collectors.toMap(keyExe3::apply,Function.identity(),(k1,k2) -> k1)))
+                ));
+    }
+
+//数据模型
+public class ChannelMetadataObjectDTO {
+    private String metadataKey;
+    private ChannelMetadataDTO channelMetadataDTO;
+}
+public class ChannelMetadataDTO {
+    private String yqnCode;
+    private String yqnName;
+    private String yqnExtends;
+    private String targetCode;
+    private String targetName;
+    private String targetExtends;
+}
+
+//调用方式
+List<ChannelMetadataObjectDTO> metadataMap
+toNestMap(metadataMap,ChannelMetadataObjectDTO::getMetadataKey,ChannelMetadataObjectDTO::getChannelMetadataDTO,ChannelMetadataDTO::getYqnCode)
+```
 
 
 

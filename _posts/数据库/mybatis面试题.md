@@ -16,9 +16,11 @@ thumbnail:
 
 （1）一个半ORM（对象关系映射）框架<!--more-->，它内部封装了JDBC，加载驱动、创建连接等繁杂的过程。
 
-（2）可以使用 XML 或注解来配置和映射原生信息，将 POJO映射成数据库中的记录
+（2）可以使用 XML 或注解来配置模型与数据库表字段的映射
 
-（3）通过xml 文件或注解的方式将要执行的各种 statement 配置起来，并通过java对象和 statement中sql的动态参数进行映射生成最终执行的sql语句，最后由mybatis框架执行sql并将结果映射为java对象并返回。（从执行sql到返回result的过程）
+（3）借助statement映射生成最终执行的sql语句并执行
+
+(Statement是指执行SQL语句的对象.MyBatis会自动将SQL语句编译成对应的Statement类型，在执行时MyBatis会将参数绑定到Statement对象中)
 
 
 
@@ -54,11 +56,16 @@ thumbnail:
 
 ### **#{}和${}的区别是什么**
 
-${}是字符串替换，#{}是预处理；
+#{}实现预编译,用?进行替换,执行时再取值,防止sql注入
 
-Mybatis在处理${}时，就是把${}直接替换成变量的值。而Mybatis在处理#{}时，会对sql语句进行预处理，将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值；
+```
+1、数据类型检查:如数值类型不加引号?,字符串类型加上引号‘?’
+2、安全检查:若传入的值带有引号则会进行转义,防止sql注入
+```
 
-使用#{}可以有效的防止SQL注入，提高系统安全性。
+
+
+${}是字符串替换,存在sql注入风险
 
 
 
@@ -96,11 +103,37 @@ Mybatis在处理${}时，就是把${}直接替换成变量的值。而Mybatis在
 
 ## **一级、二级缓存**
 
-> （1）一级缓存: 基于 PerpetualCache 的 HashMap 本地缓存，其存储作用域为 Session，当 Session flush 或 close 之后，该 Session 中的所有 Cache 就将清空，默认打开一级缓存。
->
-> （2）二级缓存与一级缓存其机制相同，默认也是采用 PerpetualCache，HashMap 存储，不同在于其存储作用域为 Mapper(Namespace)，并且可自定义存储源，如 Ehcache。默认不打开二级缓存，要开启二级缓存，使用二级缓存属性类需要实现Serializable序列化接口(可用来保存对象的状态),可在它的映射文件中配置 ；
->
-> （3）对于缓存数据更新机制，当某一个作用域(一级缓存 Session/二级缓存Namespaces)的进行了C/U/D 操作后，默认该作用域下所有 select 中的缓存将被 clear 掉并重新更新，如果开启了二级缓存，则只根据配置判断是否刷新。
+**<u>一级缓存</u>**
+
+sqlsession级别的缓存.在操作数据库时需要构建sqlsession对象,对象中有HashMap结构用于存储缓存数据,各个sqlsession中的缓存相互独立.默认开启一级缓存,针对完全相同的两次查询会使用缓存.
+
+```
+一级缓存生命周期?
+1、正常情况下与sqlsession相同生命周期
+2、调用close、clearcache方法时清除缓存
+3、sqlsession中执行任何一个update操作时失效(如增、修、删)
+
+
+如何判断两次查询完全相同?
+1、statementid相同
+2、sql相同
+3、参数相同
+```
+
+
+
+**<u>二级缓存</u>**
+
+mapper级别的缓存.多个sqlsession操作同一个mapper得到的数据会存在二级缓存,并共享二级缓存.默认不开启二级缓存.
+
+```
+1、开启二级缓存后对应的pojo对象必须是可序列化的
+2、通过在mapper文件中增加</cache>开启二级缓存
+3、文件中的所有select语句将会被缓存
+4、任何更新操作将会刷新缓存,如增、修、删
+5、缓存会默认使用最近最少使用算法来回收
+6、缓存是可读写的,并且能够做到线程隔离
+```
 
 
 
@@ -110,11 +143,9 @@ Mybatis在处理${}时，就是把${}直接替换成变量的值。而Mybatis在
 
 ## **执行结果与目标对象映射**
 
-> 第一种是使用标签，逐一定义数据库列名和对象属性名之间的映射关系。
+> 借助mapper中定义的ResultMap实现映射
 >
-> 第二种是使用sql列的别名功能，将列的别名书写为对象属性名。
->
-> 有了列名与属性名的映射关系后，Mybatis通过反射创建对象，同时使用反射给对象的属性逐一赋值并返回，那些找不到映射关系的属性，是无法完成赋值的。
+> 包括了结果集中的列与对象属性之间的对应关系，以及将列值映射为Java对象的类型转换器等信息。
 
 
 
@@ -124,9 +155,43 @@ Mybatis在处理${}时，就是把${}直接替换成变量的值。而Mybatis在
 
 ## **动态sql**
 
-> 执行原理是根据表达式的值 完成逻辑判断 并动态拼接sql的功能
+> 根据表达式的值 完成逻辑判断与sql拼接
 >
-> Mybatis提供了9种动态sql标签：trim | where | set | foreach | if | choose | when | otherwise | bind。
+> 1. trim语句
+>
+> 对sql对开头/结尾进行处理
+>
+> - prefix: 表示在SQL语句开头添加的前缀；
+> - suffix: 表示在SQL语句结尾添加的后缀；
+> - suffixOverrides/prefixOverrides: 表示从SQL语句结尾/开头移除指定的字符。
+>
+> 2. where语句:用于条件追加
+>
+> 3. set语句:用于赋值,例如在update中
+>
+> 4. foreach语句
+>
+> 遍历集合或数组，并动态生成SQL语句
+>
+> 5. if语句:条件判断
+>
+> 6. Choose语句:Choose语句相当于SQL中的case语句
+>
+> 7. when语句:用于选择分支
+>
+> 8. otherwise语句
+>
+> Otherwise语句主要用于if语句或choose语句中的默认分支，类似于SQL语句中的else分支
+>
+> 9. bind语句
+>
+> 用于将参数值动态地绑定到一个变量上，从而避免在同一个SQL语句中重复使用相同的参数值
+
+```java
+<select id="getUserByNameAndAge" resultType="User">  
+  <bind name="minAge" value="18" />   // 将参数值动态绑定到minAge变量 
+  SELECT * FROM users WHERE name LIKE CONCAT('%', #{name}, '%') AND age &gt;= #{minAge} </select>
+```
 
 
 
