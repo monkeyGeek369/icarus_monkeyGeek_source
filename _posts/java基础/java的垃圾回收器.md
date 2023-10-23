@@ -21,26 +21,42 @@ thumbnail:
 
 </br>
 
-1、Serial收集器（复制算法)
+# 串型回收器
+
+Serial收集器（复制算法)
 
 ```
 适用于新生代
-单线程收集器：它只会使用一个CPU和一条收集线程去完成垃圾收集工作
-垃圾收集时暂停所有用户线程
-Serial收集器由于没有线程交互的开销，专心做垃圾收集可以获得最高的单线程收集效率
+单线程回收器
+会产生STW(stop the world)
+适用于几兆到几十兆内存回收
 ```
 
-2、ParNew收集器(复制算法)　
 
-    适用于新生代
-    多线程收集器：Serial收集器的多线程版本
-    可以和老年代的CMS收集器配合
-    单核cup下效率不过，由于存在线程切换开销
 
-3、Parallel Scavenge收集器(复制算法)
+Serial Old收集器(标记-整理算法)
+
+    适用于年老代
+    其它Serial相同
+
+一般Serial+Serial Old可以配合使用
+
+
+
+</br>
+
+# 并行回收器
+
+<u>并行的含义是GC线程与业务线程可以切换执行，会产生STW</u>
+
+
+
+Parallel Scavenge收集器(复制算法)
 
     适用于新生代
     多线程收集器：它追求的是达到可控的吞吐量。即吞吐量=运行用户代码时间/(运行用户代码时间+GC线程时间)
+    会产生STW(stop the world)
+    适用于几十兆到1G内存
     
     参数解析：
     1）Parallel Scavenge收集器提供了两个参数用于精确控制吞吐量，分别是控制最大垃圾收集停顿时间的-XX:MaxGcPauseMillis，以及直接设置吞吐量大小的-XX:GCTimeRatio。
@@ -51,29 +67,56 @@ Serial收集器由于没有线程交互的开销，专心做垃圾收集可以�
     
     2）收集器还有 “GC自适应调节策略”的开关参数-XX:+UseAdaptiveSizePolicy。参数打开后，不需要指定新生代大小(-Xmn)、Eden与Survivor比例(-XX:SurvivorRatio)、晋升老年代的对象大小(-XX:PretenureSizeThreshold)等细节参数，虚拟机会根据当前系统的允许情况、收集性能监控信息，动态调整这些参数以提供最合适的停顿时间或者最大吞吐量。
 
-4、Serial Old收集器(标记-整理算法)
+
+
+Parallel Old收集器(标记-整理算法)
 
     适用于年老代
-    单线程收集器
-    使用标记-整理算法
+    算法不同，其它与Parallel Scavenge相同
 
-5、Parallel Old收集器(标记-整理算法)
+JDK 1.8默认的垃圾回收组合就是PS+PO
 
-    适用于年老代
+
+
+</br>
+
+# 并发回收器
+
+<u>并发（concurrent）的含义：GC线程和业务线程可以同时运行，不存在STW</u>
+
+
+
+ParNew收集器(复制算法)　
+
+    适用于新生代
     多线程收集器
-    Parallel Scavenge收集器的老年代版本
-    标记-整理算法。
-    在吞吐量优先的场合，优先考虑Parallel Scavenge收集器+ Parallel Old收集器的组合
+    本质上是Parallel Scavenge的增强，为的是更好的与CMS收集器配合使用
 
-6、CMS收集器（标记-清除算法）
+
+
+CMS收集器（标记-清除算法）
 
     以获取最短回收停顿时间为目标的收集器
 
-1）初始标记：需要“Stop the World”，用于标记GC Roots能直接关联的对象，速度很快；
+1）初始标记：用于标记GC Roots，速度很快，为了确保准确性需要“Stop the World”；
 
-2）并发标记：不需要“Stop the World”，进行GC RootsTracing的过程；
+2）并发标记：根据GC Roots找到所有可达对象并标记，不需要“Stop the World”；
 
-3）重新标记；需要“Stop the World”，修正并发标记期间因用户继续运作而导致标记产生变动的那一部分对象的标记记录，停顿时间略长于初始标记，但远远短于并发标记的时间；
+3）重新标记；针对新生代对象+GC Roots+被标记为“脏”区的对象进行扫描再标记。需要“Stop the World”；
+
+4）并发清除
+
+
+
+
+
+</br>
+
+
+
+
+
+
 
 4）并发清除：不需要“Stop the World”。
 
