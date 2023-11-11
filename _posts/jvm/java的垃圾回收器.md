@@ -1,10 +1,10 @@
 ---
 title: java的垃圾回收器
-category: java基础
+category: jvm
 date: 2021-08-31 20:38:28
 updated: 2021-08-31 20:38:28
 enname: garbage-collection
-categories: java基础
+categories: jvm
 tags:
 	- 面试
 	- jvm

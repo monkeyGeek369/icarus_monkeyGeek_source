@@ -1,10 +1,10 @@
 ---
 title: GC回收与算法
-category: java基础
+category: jvm
 date: 2022-06-18 15:58:01
 updated: 2022-06-18 15:58:01
 enname: gc
-categories: java基础
+categories: jvm
 tags:
 	- 面试
 	- jvm

@@ -1,10 +1,10 @@
 ---
 title: jvm内存模型
-category: java基础
+category: jvm
 date: 2022-06-18 15:02:04
 updated: 2022-06-18 15:02:04
 enname: memory
-categories: java基础
+categories: jvm
 tags:
 	- 面试
 	- jvm
