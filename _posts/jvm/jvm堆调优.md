@@ -13,7 +13,7 @@ permalink:
 thumbnail:
 ---
 
-### 分析工具
+# 分析工具
 
 1. jpa：列出所有java进程，命令jps
 2. jinfo：列出指定进程id的详细信息，命令jinfo 1180
@@ -22,6 +22,14 @@ thumbnail:
 5. top:linux命令，列出所有线程，命令top
 6. jmap:进程内对象占比分析，命令jmap -histo 1180，或者实现dump功能
 7. arthas：系统的jvm分析工具（仪表板/修改代码/反编译/trace跟踪）
+
+
+
+# -XX常用参数设置
+
+jvm调优本质上就是调-XX参数
+
+
 
 
 
