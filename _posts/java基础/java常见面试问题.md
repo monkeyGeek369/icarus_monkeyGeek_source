@@ -18,15 +18,19 @@ java常见且经典面试问题收集
 
 1、object o = new object();的o占中多少字节
 
-如何查看对象头内存分配：通过idea插件JOL来查看
+如何查看对象内存分配：通过idea插件JOL来查看
 
-对象头组成：markword（8字节）、类型指针（默认不开启压缩4字节，开启后8字节）、实例数据（n字节）、对齐（保证对象头可以被8字节整除的补齐字节数）
+- 对象头
+  - markword（8字节）
+  - 类型指针（默认开启压缩4字节，不开启压缩8字节）
+- 实例数据（n字节）
+- 对齐（保证对象可以被8字节整除的补齐字节数）
 
 
 
 注：可以通过idea中的插件jol来查看对象的存储信息
 
-答案：开启压缩16字节（8+4+0+4），开启压缩16字节（8+8+0+0）
+答案：不开启压缩16字节（8+4+0+4），开启压缩16字节（8+8+0+0）
 
 </br>
 
@@ -46,7 +50,7 @@ java常见且经典面试问题收集
 
 普通对象：对象头（mark work/class pointer）、对象实际数据(instance data)、对齐(padding)
 
-数组：对象头（mark work/class pointer/length）、对象实际数据(instance data)、对齐(padding)
+数组：对象头（mark work/class pointer/<u>length</u>）、对象实际数据(instance data)、对齐(padding)
 
 
 
@@ -95,7 +99,7 @@ public class Singleton7 {
 }
 ```
 
-
+结论：当DCL模式下需要创建对象时，由于创建对象涉及到划分内存、赋默认值、执行构造方法等步骤，cpu有可能进行指令冲排序，所以需要volatile
 
 
 
