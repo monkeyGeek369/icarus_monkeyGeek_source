@@ -22,6 +22,7 @@ thumbnail:
 5. top:linux命令，列出所有线程，命令top
 6. jmap:进程内对象占比分析，命令jmap -histo 1180，或者实现dump功能
 7. arthas：系统的jvm分析工具（仪表板/修改代码/反编译/trace跟踪）
+8. java visualVM：jdk自带，可分析本地、远程的jvm信息
 
 
 
