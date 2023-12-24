@@ -16,7 +16,9 @@ thumbnail:
 # 分析工具
 
 1. jpa：列出所有java进程，命令jps
-2. jinfo：列出指定进程id的详细信息，命令jinfo 1180
+2. jinfo
+   1. 列出指定进程id的详细信息，命令jinfo 1180
+   2. 查看进程下的jvm设置参数，例如 jinfo -flag NewRatio 1180
 3. jstat：内存区域占用情况，命令jstat -gc 1180
 4. jstack:列出指定进程的所有线程，命令jstack 1180
 5. top:linux命令，列出所有线程，命令top
@@ -26,52 +28,34 @@ thumbnail:
 
 
 
-# -XX常用参数设置
+# 常用参数设置
 
-jvm调优本质上就是调-XX参数
+- 堆空间常用参数
+  - -XX:+PrintFlagsInitial查看所有参数默认初始值
+  - -XX:+PrintFlagsFinal查看所有参数的最终值
+  - -Xms100m设置堆初始大小（默认1/64）
+  - -Xmx100m设置堆最大值（默认1/4）
+  - -Xmn10m设置年轻代大小
+  - -XX:NewRatio=2设置老年代/年轻代的数值（默认2）
+  - -XX:SurvivorRatio=8设置eden/s的数值（默认8）
+  - -XX:MaxTenuringThreshold=15设置新生代垃圾的最大年龄
+  - -XX:+PrintGCDetails打印gc详细信息
+  - -XX:+PrintGC打印gc简略信息
+  - -XX:HandlePromotionFailure=true是否设置空间分配担保(minor GC之前jvm会检查老年代最大连续空间是否大于新生代所有对象的总空间，如果大于则可以minor gc，如果小于则看此参数设置。如果为true则看老年代最大连续空间是否大于历次晋升到老年代的对象的平均大小，如果大于则尝试minor gc否则执行进行full gc。如果为false则直接full gc)<u>JDK 7之后此参数已经失效</u>
+
+
+
+# 如何解决OOM
+
+1. 首先要确定是内存泄漏还是内存溢出
+   1. 内存泄漏：对象即使不使用了但一直存在引用导致无法回收
+   2. 内存溢出：对象所需大小超过了堆空间大小
+2. 如果是内存泄漏：通过工具找到泄漏对象的引用链
+3. 如果是内存溢出：找到存活时间长或者大量的对象，通过优化代码和设置堆大小来解决
 
 
 
 
-
-
-
-### 内存设置
-
-- 整个JVM内存大小=堆内存+ 非堆内存<!--more-->
-- 堆（heap）：是Java代码可用的内存，是留给开发人员使用的；
-- 非堆（non-heap）：是JVM留给自己用的，所以方法区、JVM内部处理或优化所需的内存(如JIT编译后的代码缓存)、每个类结构(如运行时常数池、字段和方法数据)以及方法和构造方法的代码都在非堆内存中。
-- JDK1.8之前:堆内存=年轻代+年老代+持久代.JDK18之后：堆内存=年轻代+年老代
-
-</br>
-
-### 堆内存分配
-
-堆的大小一般不超过现有空闲内存的80%
-
-- -Xmx：yound代加上old代总和的初始最大值
-- -Xms：yound代加上old代总和的最小值
-- -XX:NewSize=<n>[g|m|k]  设置年轻代的初始值和最小值（NewSize与MaxNewSize必须同时设置）
-- -XX:MaxNewSize=<n>[g|m|k]  设置年轻代的最大值（NewSize与MaxNewSize必须同时设置）
-- -Xmn<n>[g|m|k] 固定年轻代始终为该大小，Sun官方推荐配置为整个堆的3/8
-- old代需要借助yound来设置（总量-yound）
-
-</br>
-
-### 非堆内存分配
-
-一般不去设置持久代而是通过JVM自动调整
-
-- -XX:PermSize=<n>[g|m|k] 设置permanent代的初始值和最小值
-- -XX:MaxPermSize=<n>[g|m|k] 设置permanent代的最大值
-
-</br>
-
-### 其它辅助设置
-
-- -XX:NewRatio=4:设置年轻代与年老代的比值。设置为4，则年轻代与年老代所占比值为1：4，年轻代占整个堆栈的1/5
-- -XX:SurvivorRatio=4：设置年轻代中Eden区与Survivor区的大小比值。设置为4，则两个Survivor区与一个Eden区的比值为2:4，一个Survivor区占整个年轻代的1/6
-- -XX:MaxTenuringThreshold=0：设置垃圾最大年龄。如果设置为0的话，则年轻代对象不经过Survivor区，直接进入年老代。对于年老代比较多的应用，可以提高效率。如果将此值设置为一个较大值，则年轻代对象会在Survivor区进行多次复制，这样可以增加对象再年轻代的存活时间，增加在年轻代即被回收的概率。
 
 </br>
 
