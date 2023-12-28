@@ -15,7 +15,7 @@ thumbnail:
 
 # 分析工具
 
-1. jpa：列出所有java进程，命令jps
+1. Jps：列出所有java进程，命令jps
 2. jinfo
    1. 列出指定进程id的详细信息，命令jinfo 1180
    2. 查看进程下的jvm设置参数，例如 jinfo -flag NewRatio 1180
