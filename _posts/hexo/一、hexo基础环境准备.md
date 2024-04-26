@@ -47,7 +47,34 @@ hexo的安装可以按照官方文档推荐的步骤进行，以下介绍一些�
 
 
 
-<span style="color:red">注意：</span>本教程基于windows系统，mac或linux等系统的环境安装请参考官网 https://hexo.io/zh-cn/docs/
+<span style="color:red">注意：</span>
+
+1、本教程基于windows系统，mac或linux等系统的环境安装请参考官网 https://hexo.io/zh-cn/docs/
+
+2、nodejs安装成功后可用命令node -v查看版本
+
+3、hexo安装成功后可用命令hexo -v查看信息（注意此时打开cmd是需要用管理员权限，否则报错）
+
+4、hexo安装一定要注意与nodejs的版本对应，否则会出现问题。（如下hexo -v信息仅供参考）
+
+hexo-cli: 4.3.2
+os: win32 10.0.22631 undefined
+node: 11.15.0
+v8: 7.0.276.38-node.19
+uv: 1.27.0
+zlib: 1.2.11
+brotli: 1.0.7
+ares: 1.15.0
+modules: 67
+nghttp2: 1.37.0
+napi: 4
+llhttp: 1.1.1
+http_parser: 2.8.0
+openssl: 1.1.1b
+cldr: 34.0
+icu: 63.1
+tz: 2018e
+unicode: 11.0
 
 
 
