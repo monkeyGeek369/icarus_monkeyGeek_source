@@ -174,7 +174,7 @@ docker rm container_name_or_id
 # -i:交互式
 # -t:命令窗口
 # bash:指定linux交互方式,根据操作系统不同可以自由改变,例如针对unix等/bin/sh
-docker exec -it 69d1 bash
+docker exec -it 69d1 /bin/bash
 ```
 
 </br>
