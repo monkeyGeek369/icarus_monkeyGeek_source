@@ -47,6 +47,23 @@ https://yeasy.gitbook.io/docker_practice#/
 
 </br>
 
+# 其它辅助命令
+
+```python
+# 传递文件至远程主机
+scp -P 22 -C /Users/monkeygeek/Documents/tools/docker/docker-compose/win-server-2012.yaml mahao@192.168.150.229:/tmp
+
+# 机器是否支持虚拟化命令(linux机器)
+cat /proc/cpuinfo | grep -E -o 'vmx|svm'
+
+# 复制命令
+cp /source/path /target/path
+```
+
+
+
+</br>
+
 # 镜像命令
 
 ```python
@@ -72,6 +89,12 @@ docker image ls -a
 # 查看镜像容量
 docker system df
 
+# 导出镜像
+docker save 0fdf2b4c26d3 > hangge_server.tar
+# 倒入镜像
+docker load < hangge_server.tar
+# 为镜像添加tag
+docker tag 1556b76d10a0 dockurr/windows:latest
 
 # 运行镜像
 #  -i：交互式操作,-t:终端,-d:守护态运行,不会输出信息到终端,--rm：这个参数是说容器退出后随之将其删除
@@ -80,6 +103,21 @@ docker run -itd --rm python:3.8.18 /bin/sh
   
 # 删除镜像
 docker image rm [选项] <镜像1> [<镜像2> ...]
+
+# 重新设置镜像地址
+第一步:编辑文件(没有可以创建)/etc/docker/daemon.json
+第二步:设置镜像配置
+  {
+    "registry-mirrors":[
+        "https://ox288s4f.mirror.aliyuncs.com",
+        "https://registry.docker-cn.com",
+        "http://hub-mirror.c.163.com",
+        "https://mirror.ccs.tencentyun.com"
+    ]
+}
+第三步:重读配置和重启docker
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 
 ```
 
