@@ -28,7 +28,18 @@ thumbnail:
 用于反编译分析class二进制文件的组成内容
 作用：通过分析字节码文件的指令来更好的理解代码执行过程，排查问题
 
-- javap命令：javap -v class文件路径
+- javap命令：将字节码文件翻译为字节码指令。基本格式javap <操作符> <class路径>
+    - -public：显示公共成员
+    - -protected：显示受保护成员+公共成员
+    - -private：显示所有成员
+    - -package：显示非私有成员
+    - -sysinfo：显示系统信息
+    - -constants：显示静态成员
+    - -s：输出类的内部成员签名
+    - -l：输出局部变量表
+    - javap -c classpath test.txt：翻译为完整的字节码指令到test文件
+    - javap -v classpath test.txt:翻译为完整的字节码指令到test文件且包含编译时的jdk信息
+    - javap -v -p classpath test.txt:翻译为完整的字节码指令到test文件且包含编译时的jdk信息自己私有成员信息。这是最完整的
 - JClassLib插件：idea插件，将字节码文件翻译为字节码指令
 - binary viewer：桌面工具，解读字节码文件
 
