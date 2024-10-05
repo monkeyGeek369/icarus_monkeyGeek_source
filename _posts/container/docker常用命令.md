@@ -50,8 +50,11 @@ https://yeasy.gitbook.io/docker_practice#/
 # 其它辅助命令
 
 ```python
-# 传递文件至远程主机
+# 传递文件至远程主机（需要安装ssh服务）
 scp -P 22 -C /Users/monkeygeek/Documents/tools/docker/docker-compose/win-server-2012.yaml mahao@192.168.150.229:/tmp
+
+# 传递文件至docker容器
+docker cp local/file container:tag/container_path
 
 # 机器是否支持虚拟化命令(linux机器)
 cat /proc/cpuinfo | grep -E -o 'vmx|svm'
@@ -72,6 +75,7 @@ docker build [OPTIONS] PATH | URL | -
 # -f用来指定具体的Dockerfile
 # 最后的.表示上下文,即相对于当前路径的路径,次路径下的文件将被统一打包进入docker服务端,并作为初始路径
 # -t 或 --tag 选项给镜像指定一个标签（名称和可选的标签）
+# .要特别注意，代表dockerfile中的上下文地址，即dockerfile中的路径都是在此基础上
 docker build -f /path/to/Dockerfile -t myimage:latest .
 # 可以通过--build-arg增加多个构建参数key=value
 docker build --build-arg http_proxy=http://proxy:port --build-arg https_proxy=http://proxy:port .
@@ -91,7 +95,7 @@ docker system df
 
 # 导出镜像
 docker save 0fdf2b4c26d3 > hangge_server.tar
-# 倒入镜像
+# 导入镜像（需要在cmd中执行，powershell不支持）
 docker load < hangge_server.tar
 # 为镜像添加tag
 docker tag 1556b76d10a0 dockurr/windows:latest
@@ -100,6 +104,7 @@ docker tag 1556b76d10a0 dockurr/windows:latest
 #  -i：交互式操作,-t:终端,-d:守护态运行,不会输出信息到终端,--rm：这个参数是说容器退出后随之将其删除
 # /bin/sh:放在镜像名后的是“命令”,/bin/sh表示使用交互式shell
 docker run -itd --rm python:3.8.18 /bin/sh
+docker run -itd -p localport:containerport image_name:tag /bin/bash
   
 # 删除镜像
 docker image rm [选项] <镜像1> [<镜像2> ...]
